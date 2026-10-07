@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soulvana Adventure | Discover the World Beyond Ordinary</title>
+<meta name="description" content="Discover the world with Soulvana Adventure. Thoughtfully designed journeys, signature packages, and authentic Bali adventures.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: '#0E9FBA',
+        t: '#0E9FBA',
+        td: '#0B7F96',
+        ink: '#1e2329',
+        mut: '#717885',
+        navy: '#123B52'
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        serif: ['Playfair Display', 'serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+:root {
+  box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #ffffff;
+  --fg: #1e2329;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+html, body {
+  overflow-x: hidden;
+}
+@supports(overflow: clip) {
+  html, body {
+    overflow-x: clip;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Navbar: floating glass capsule on scroll */
+#nav { transition: padding .4s; }
+#nav .nav-inner {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  transition: max-width .6s cubic-bezier(.22,1,.36,1), padding .5s cubic-bezier(.22,1,.36,1),
+              background .5s, border-color .5s, box-shadow .5s, backdrop-filter .5s;
+}
+#nav.sc .nav-inner {
+  max-width: 1160px;
+  padding: .5rem .6rem .5rem 1rem;
+  background: linear-gradient(135deg, rgba(14,52,72,.62), rgba(8,30,44,.5));
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 18px 50px rgba(4,22,34,.38), inset 0 1px 0 rgba(255,255,255,.22);
+}
+#nav .tagline { max-height: 1rem; overflow: hidden; transition: max-height .4s, opacity .3s, margin .4s; }
+#navInd {
+  position: absolute; top: 6px; bottom: 6px; left: 0; width: 0;
+  border-radius: 9999px; background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transition: transform .45s cubic-bezier(.22,1,.36,1), width .45s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+}
+.nlink { white-space: nowrap; position: relative; z-index: 1; color: rgba(255,255,255,.9); transition: color .3s; }
+.nlink.ind-on { color: #111827; }
+#navProg {
+  position: absolute; left: 2rem; right: 2rem; bottom: 0; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, #0E9FBA, #a5eaf8, #fff);
+  transform-origin: left; transform: scaleX(0); opacity: 0; transition: opacity .4s;
+}
+#nav.sc #navProg { opacity: .9; }
+.bk-shine { position: relative; overflow: hidden; }
+.bk-shine::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+}
+.bk-shine:hover::after { transform: translateX(120%) skewX(-20deg); transition: transform .8s; }
+#burger span { display: block; position: absolute; left: 12px; right: 12px; height: 2px; border-radius: 2px; background: #fff; transition: transform .35s, opacity .25s, top .35s; }
+#burger span:nth-child(1) { top: 15px; } #burger span:nth-child(2) { top: 21px; } #burger span:nth-child(3) { top: 27px; }
+#burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+#burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+#burger[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+@keyframes mnavIn { from { opacity: 0; transform: translateY(-10px) scale(.97); } to { opacity: 1; transform: none; } }
+#mnav:not(.hidden) { animation: mnavIn .35s cubic-bezier(.22,1,.36,1); }
+
+/* Card hover & utilities */
+.pk .more {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s;
+}
+.pk:hover .more, .pk:focus-visible .more {
+  max-height: 220px;
+  opacity: 1;
+}
+@media (hover: none) {
+  .pk .more {
+    max-height: 220px;
+    opacity: 1;
+  }
+}
+
+.ph {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), transparent);
+}
+.card img, .card .ph {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .card:hover .ph {
+    transform: scale(1.05);
+  }
+}
+
+/* Gradasi Placeholder Gambar */
+.sea { background: linear-gradient(180deg, #5cc6ea 0%, #2aa9d6 45%, #0f8fb6 100%); }
+.fall { background: linear-gradient(180deg, #cfe9d9 0%, #5fae82 40%, #1f6b52 100%); }
+.mtn { background: linear-gradient(180deg, #9fd3ee 0%, #6fb08a 55%, #3d7a4f 100%); }
+.wild { background: linear-gradient(180deg, #f3d9a4 0%, #c98f55 50%, #5d6b3f 100%); }
+.cult { background: linear-gradient(180deg, #f6c9a0 0%, #d47a5a 55%, #6b3f4a 100%); }
+.trek { background: linear-gradient(180deg, #b8e0c8 0%, #3f9a6a 55%, #14513a 100%); }
+
+/* Moments gallery marquee */
+.mq { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mq-track { display: flex; width: max-content; animation: mqL 55s linear infinite; }
+.mq-track.rev { animation-name: mqR; animation-duration: 65s; }
+.mq:hover .mq-track { animation-play-state: paused; }
+@keyframes mqL { to { transform: translateX(-50%); } }
+@keyframes mqR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.mq-half { display: flex; gap: 1rem; padding-right: 1rem; align-items: center; }
+.mq-tile { transform: rotate(var(--r, 0deg)); transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s; }
+.mq-tile:hover { transform: rotate(0deg) scale(1.05); z-index: 2; box-shadow: 0 25px 50px rgba(11,40,56,.28); }
+/* Scroll reveal effect */
+.rv {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+.chip.on {
+  background: #123B52;
+  color: #fff;
+  border-color: #123B52;
+}
+.stamp {
+  background: #fff;
+  border: 2px dashed #cfe3e8;
+  padding: 16px 16px 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+.stamp:hover {
+  transform: translateY(-4px);
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.card-anim {
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+}
+.card-hover:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .rv, .card-anim {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+:focus-visible {
+  outline: 2px solid #0E9FBA;
+  outline-offset: 2px;
+}
+
+body .sa {
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+#chips {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+#chips::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== HERO (ringan: hanya transform & opacity) ===== */
+.hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.hbg.is-on{opacity:1;animation:hkb 8s ease-out forwards}
+@keyframes hkb{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-shade{background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.05) 38%,rgba(0,0,0,.78)),linear-gradient(to right,rgba(0,0,0,.4),transparent 65%)}
+.hin{opacity:0;transform:translateY(16px);animation:hin .7s cubic-bezier(.2,.7,.2,1) forwards}
+.hd1{animation-delay:.05s}.hd2{animation-delay:.15s}.hd3{animation-delay:.28s}.hd4{animation-delay:.4s}.hd5{animation-delay:.52s}
+@keyframes hin{to{opacity:1;transform:none}}
+.hthumb{position:relative;opacity:.7;transition:opacity .25s,transform .25s}
+.hthumb:hover{opacity:1;transform:translateY(-3px)}
+.hthumb.on{opacity:1}
+.hthumb.on .hring{opacity:1}
+.hring{position:absolute;inset:0;border-radius:inherit;border:2px solid #fff;opacity:0;transition:opacity .25s;pointer-events:none}
+.hprog{position:absolute;left:0;right:0;bottom:-8px;height:3px;border-radius:9px;background:rgba(255,255,255,.25);overflow:hidden}
+.hprog i{display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+.hthumb.on .hprog i{animation:hprog 6s linear forwards}
+@keyframes hprog{to{transform:scaleX(1)}}
+.hero-paused .hprog i,.hero-paused .hbg.is-on{animation-play-state:paused}
+.hpulse{animation:hpulse 2s ease-out infinite}
+@keyframes hpulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.6)}100%{box-shadow:0 0 0 8px rgba(52,211,153,0)}}
+@media (prefers-reduced-motion:reduce){.hbg.is-on,.hin,.hpulse,.hthumb.on .hprog i{animation:none!important}.hin{opacity:1;transform:none}.hprog i{transform:scaleX(1)}}
+
+/* ===== POPULAR PLACE ===== */
+.pcard .ph{position:absolute;inset:0;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.pcard .ph::after{display:none}
+.pcard-shade{background:linear-gradient(to top,rgba(6,24,34,.9) 0%,rgba(6,24,34,.4) 40%,rgba(6,24,34,0) 72%);transition:opacity .4s}
+.pcard .parrow{transition:transform .45s cubic-bezier(.22,1,.36,1),background .3s,color .3s}
+@media (hover:hover){
+  .pcard:hover .ph{transform:scale(1.08)}
+  .pcard:hover .parrow{background:#0E9FBA;color:#fff;transform:rotate(45deg)}
+}
+
+/* ===== FAQ accordion ===== */
+#faq summary::-webkit-details-marker{display:none}
+#faq details>summary>span:first-child{transition:color .3s}
+#faq details[open]:not(.is-closing)>summary>span:first-child{color:#0E9FBA}
+#faq details[open]:not(.is-closing)>summary>span:last-child{background:#0E9FBA;color:#fff}
+#faq details.is-closing>summary>span:last-child{--tw-rotate:0deg}
+
+/* ===== MOBILE MENU + TOURS DROPDOWN ===== */
+#mnav{max-height:calc(100svh - 6rem);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+  background:#fff;color:#123B52;border-color:rgba(18,59,82,.08);
+  box-shadow:0 30px 70px rgba(18,59,82,.28),0 2px 0 rgba(255,255,255,.8) inset}
+#mnav::-webkit-scrollbar{display:none}
+@keyframes miIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#mnav:not(.hidden) .mi{animation:miIn .5s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*55ms + 90ms)}
+.mrow{display:flex;align-items:center;gap:14px;width:100%;padding:13px 14px;border-radius:18px;text-align:left;transition:background .25s,transform .2s}
+.mrow:hover,.mrow:active{background:rgba(14,159,186,.08)}
+.mrow:active{transform:scale(.985)}
+.mnum{font-size:11px;font-weight:700;letter-spacing:.12em;color:rgba(18,59,82,.35);width:22px}
+.mico{margin-left:auto;width:28px;height:28px;border-radius:999px;border:1px solid rgba(18,59,82,.18);display:grid;place-items:center;color:rgba(18,59,82,.6);transition:background .3s,color .3s,transform .4s cubic-bezier(.22,1,.36,1)}
+.mrow:hover .mico{background:#0E9FBA;border-color:#0E9FBA;color:#fff;transform:rotate(45deg)}
+#toursBtn .mico{transform:none}
+#toursBtn[aria-expanded="true"]{background:rgba(14,159,186,.08)}
+#toursBtn[aria-expanded="true"] .mico{background:#0E9FBA;border-color:#0E9FBA;color:#fff;transform:rotate(180deg)}
+.msub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.22,1,.36,1)}
+.msub.open{grid-template-rows:1fr}
+.msub>div{min-height:0;overflow:hidden}
+.pk{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:16px;transition:background .25s}
+.pk:hover,.pk:active{background:rgba(14,159,186,.08)}
+.pk img{width:48px;height:48px;border-radius:13px;object-fit:cover;flex:none;background:#e6f1f5}
+.pk-tag,.pk-t,.pk-p{display:block}
+.pk-body{flex:1;min-width:0}
+.pk-tag{font-size:9px;font-weight:700;letter-spacing:.2em;color:#0E9FBA;text-transform:uppercase}
+.pk-t{font-size:13px;font-weight:600;line-height:1.25;color:#123B52;margin-top:2px}
+.pk-p{font-size:11px;color:rgba(18,59,82,.6);margin-top:2px}
+.msub.open .pk{animation:miIn .45s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*70ms + 120ms)}
+.msub-rail{margin:0 0 6px;padding:0 4px 0 10px}
+.mbook{position:relative;overflow:hidden;background:linear-gradient(135deg,#0E9FBA,#123B52);color:#fff}
+.mbook::after{content:"";position:absolute;inset:0;transform:translateX(-120%) skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:mshine 3.2s 1s infinite}
+@keyframes mshine{to{transform:translateX(120%) skewX(-20deg)}}
+/* desktop dropdown */
+#toursDrop{position:absolute;top:calc(100% + 14px);left:0;width:360px;padding:10px;border-radius:26px;
+  background:#fff;border:1px solid rgba(18,59,82,.08);
+  box-shadow:0 30px 70px rgba(18,59,82,.28);
+  opacity:0;visibility:hidden;transform:translate(-50%,10px) scale(.97);transform-origin:top center;
+  transition:opacity .25s,transform .4s cubic-bezier(.22,1,.36,1),visibility 0s .4s;z-index:60}
+#toursDrop::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+#toursDrop.show{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1);transition-delay:0s}
+#toursDrop .pk-t{font-size:14px}
+.nchev{display:inline-block;margin-left:5px;vertical-align:-1px;transition:transform .3s}
+#navLinks.tours-open .nchev{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){#mnav:not(.hidden) .mi,.msub.open .pk,.mbook::after{animation:none}}
+
+/* ===== Tours: main tours + travel style ===== */
+.tlabel{font-size:12px;font-weight:500;color:rgba(18,59,82,.55);margin:14px 6px 4px}
+.tlabel:first-child{margin-top:4px}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:12px 6px;text-align:left;font-size:15px;font-weight:700;line-height:1.3;color:#123B52;border-radius:14px;transition:background .25s}
+.trow:hover{background:rgba(14,159,186,.06)}
+.trow svg{flex:none;color:rgba(18,59,82,.5);transition:transform .4s cubic-bezier(.22,1,.36,1),color .3s}
+.trow[aria-expanded="true"] svg{transform:rotate(180deg);color:#0E9FBA}
+.trow[aria-expanded="true"]{color:#0E9FBA}
+.tdetail{display:flex;gap:12px;align-items:center;padding:4px 6px 12px}
+.tdetail img{width:64px;height:64px;border-radius:16px;object-fit:cover;flex:none;background:#e6f1f5}
+.tdetail .pk-tag{font-size:9px}
+.tdetail .td-t{font-size:13px;font-weight:700;line-height:1.3;color:#123B52;margin-top:2px}
+.tdetail .td-m{font-size:12px;color:rgba(18,59,82,.65);margin-top:3px}
+.tdetail .td-p{font-size:13px;font-weight:800;color:#123B52;margin-top:1px}
+.tgo{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 6px 6px 14px;border-radius:999px;background:#0E9FBA;color:#fff;font-size:12px;font-weight:700;transition:background .25s,transform .2s}
+.tgo:active{transform:scale(.96)}
+.tgo i{width:20px;height:20px;border-radius:999px;background:#fff;color:#0E9FBA;display:grid;place-items:center;font-style:normal}
+.tall{display:inline-block;margin:2px 6px 0;font-size:12px;font-weight:700;color:#0E9FBA}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px 6px}
+.tstyle{display:flex;align-items:center;gap:10px;padding:10px 6px;border-radius:14px;font-size:14px;font-weight:600;color:#123B52;transition:background .25s,transform .2s}
+.tstyle:hover,.tstyle:active{background:rgba(14,159,186,.08)}
+.tstyle:active{transform:scale(.97)}
+.temo{width:32px;height:32px;border-radius:11px;display:grid;place-items:center;flex:none;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.tstyle:hover .temo{transform:scale(1.1) rotate(-4deg)}
+#toursPanel.open .tanim{animation:miIn .45s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*45ms + 90ms)}
+#toursDrop{width:380px}
+@media (prefers-reduced-motion:reduce){#toursPanel.open .tanim{animation:none}}
+
+/* ===== Package closed state ===== */
+.pkg-closed .ph{filter:grayscale(1) brightness(.9)}
+.pkg-closed:hover .ph{transform:none}
+.pkg-closed .pkg-body > *:not(.mt-auto){opacity:.55}
+.pkg-closed .pkg-body h4{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(225,29,72,.55)}
+.tclosed{font-style:normal;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-left:8px;padding:3px 8px;border-radius:999px;background:#fde8ec;color:#d6336c;vertical-align:2px}
+</style>
+</head>
+<body class="font-sans antialiased text-ink">
+
+<!-- ================= NAVIGATION ================= -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 py-3 sm:py-4 px-3 sm:px-5" style="padding-top: max(0.75rem, env(safe-area-inset-top, 0px))">
+  <div class="nav-inner max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between text-white">
+
+    <a href="#home" class="flex items-center gap-3 group">
+      <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#2cc4e0] to-brand ring-1 ring-white/40 flex items-center justify-center text-white shadow-[0_0_26px_rgba(14,159,186,.6)] transition-transform duration-500 group-hover:scale-105 group-hover:rotate-[12deg]">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.4 7.6 11.9a.7.7 0 0 0 .8 0C13 21.4 20 15.4 20 10a8 8 0 0 0-8-8z"/>
+          <path d="m10 9 4-2-1 4-2-1z"/>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-none">Soulvana</span>
+        <span class="tagline text-[9px] sm:text-[10px] text-white/85 font-semibold uppercase tracking-[0.32em] mt-1">Adventure</span>
+      </div>
+    </a>
+
+    <nav id="navLinks" class="relative hidden lg:flex items-center gap-1 text-[13px] font-medium p-1.5 rounded-full bg-white/15 backdrop-blur-xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,.25)]" aria-label="Main">
+      <span id="navInd" aria-hidden="true"></span>
+      <a href="#home" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900">Home</a>
+      <a href="#about" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900">About Us</a>
+      <a href="#packages" id="toursLink" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900" aria-haspopup="true">Tours<svg class="nchev w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+      <a href="#explore" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900">Experiences</a>
+      <a href="#faq" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900">FAQ</a>
+      <a href="#footer" class="nlink px-3 xl:px-4 py-2 rounded-full hover:text-gray-900">Contact Us</a>
+      <div id="toursDrop" role="menu" aria-label="Tour packages"></div>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="#booking" class="bk-shine group/bk hidden sm:inline-flex items-center gap-3 bg-white/15 backdrop-blur-xl border border-white/25 text-white hover:bg-white hover:text-gray-900 text-[13px] font-semibold pl-5 pr-1.5 py-1.5 rounded-full transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,.25)]">
+        Book Now
+        <span class="w-8 h-8 rounded-full bg-white text-gray-900 group-hover/bk:bg-brand group-hover/bk:text-white group-hover/bk:rotate-45 flex items-center justify-center transition-all duration-300"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+      </a>
+      <button id="burger" class="lg:hidden relative w-11 h-11 rounded-full bg-white/15 backdrop-blur-xl border border-white/25" aria-label="Buka Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="navProg" aria-hidden="true"></div>
+  </div>
+
+    <div id="mnav" class="hidden lg:hidden max-w-[1400px] mx-auto mt-2 rounded-[28px] border border-white/15 p-3 text-white text-[16px] font-medium">
+    <a href="#home" class="mi mrow" style="--i:0"><span class="mnum">01</span><span>Home</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+    <a href="#about" class="mi mrow" style="--i:1"><span class="mnum">02</span><span>About Us</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+    <div class="mi" style="--i:2">
+      <button type="button" id="toursBtn" class="mrow" aria-expanded="false" aria-controls="toursPanel"><span class="mnum">03</span><span>Tours</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div id="toursPanel" class="msub"><div><div class="msub-rail" id="toursList"></div></div></div>
+    </div>
+    <a href="#explore" class="mi mrow" style="--i:3"><span class="mnum">04</span><span>Experiences</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+    <a href="#faq" class="mi mrow" style="--i:4"><span class="mnum">05</span><span>FAQ</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+    <a href="#footer" class="mi mrow" style="--i:5"><span class="mnum">06</span><span>Contact Us</span><span class="mico"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+    <a href="#booking" class="mi mbook mt-3 flex items-center justify-center gap-2 font-bold px-4 py-4 rounded-2xl shadow-lg" style="--i:6">Book Now <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+  </div>
+</header>
+
+<main>
+  <!-- ================= MAIN / HERO SECTION ================= -->
+  <section id="home" class="relative w-full min-h-[100svh] flex flex-col text-white overflow-hidden bg-slate-900 pt-28 sm:pt-32 pb-16 sm:pb-20">
+
+    <!-- Background: 2 layer saja, crossfade -->
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img id="bgA" class="hbg is-on" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1600&q=72" fetchpriority="high" decoding="async" alt="">
+      <img id="bgB" class="hbg" decoding="async" alt="">
+    </div>
+    <div class="hero-shade absolute inset-0 z-10 pointer-events-none"></div>
+
+    <!-- Konten utama -->
+    <div class="relative z-20 flex-1 flex items-center">
+      <div class="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-12">
+        <div class="max-w-3xl">
+          <span class="hin hd1 inline-flex items-center gap-2.5 pl-3 pr-4 py-2 rounded-full border border-white/25 bg-white/15 text-xs sm:text-[13px] font-medium">
+            <span class="hpulse w-2 h-2 rounded-full bg-emerald-400"></span>
+            Magic of Bali Tour · Open trip 15 Oct 2026
+          </span>
+
+          <h1 class="hin hd2 mt-6 sm:mt-8 text-[46px] leading-[1.02] sm:text-7xl lg:text-[96px] font-light tracking-tight">
+            Discover Bali
+            <span class="block mt-1 sm:mt-2"><span class="font-medium">with</span> <em class="font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-sky-200">Soulvana</em></span>
+          </h1>
+
+          <p class="hin hd3 mt-6 max-w-md text-[14px] sm:text-base leading-relaxed text-white/85">Perjalanan yang dirancang dengan hati: air terjun tersembunyi, sunrise di pegunungan, hingga lumba-lumba di Lovina, bersama pemandu lokal.</p>
+
+          <div class="hin hd4 mt-8 flex flex-wrap items-center gap-3">
+            <a href="#booking" class="inline-flex items-center gap-2 bg-white text-gray-900 text-sm font-semibold px-7 py-3.5 rounded-full shadow-xl hover:bg-sky-50 hover:-translate-y-0.5 transition">Book Now</a>
+            <a href="#explore" class="inline-flex items-center gap-2 border border-white/40 bg-white/10 text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white hover:text-gray-900 transition">
+              Explore trips
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+
+          <div class="hin hd5 mt-8 flex items-center gap-3">
+            <div class="flex -space-x-2.5">
+              <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=70" alt="">
+              <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=70" alt="">
+              <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=70" alt="">
+            </div>
+            <p class="text-xs text-white/85 leading-tight"><span class="font-bold text-white">+200k</span> Happy Clients<br><span class="text-white/70">Rated 4.9 ★ by travellers</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bawah: info slide aktif + thumbnail -->
+    <div class="relative z-20 w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-12 pt-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6">
+        <div class="min-w-0 w-full sm:w-auto">
+          <div class="leading-none"><span id="heroCount" class="text-4xl sm:text-5xl font-light">01</span><span id="heroTotal" class="text-base text-white/70">/04</span></div>
+          <h3 id="featTitle" class="mt-2 text-base sm:text-xl font-medium truncate"></h3>
+          <p id="featMeta" class="text-xs sm:text-sm text-white/80"></p>
+        </div>
+        <div id="heroThumbs" class="flex items-end gap-3 sm:gap-4 pb-3 shrink-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Bar (overlaps hero bottom) -->
+  <div id="booking" class="relative z-30 w-full max-w-[1360px] mx-auto px-5 sm:px-8 -mt-9 sm:-mt-10">
+    <form id="search" class="w-full bg-white text-gray-900 rounded-3xl lg:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.35)] p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.2fr_1.1fr_1fr_1fr_auto] gap-3 sm:gap-4 items-center">
+        
+        <div class="flex items-center gap-3.5 px-3 lg:px-4 py-1">
+          <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Destination</label>
+            <select id="sdest" class="w-full text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer bg-transparent outline-none">
+              <option value="">Where are you going?</option>
+              <option value="North Bali">North Bali</option>
+              <option value="Munduk">Munduk</option>
+              <option value="Sekumpul">Sekumpul</option>
+              <option value="Lovina">Lovina</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 px-3 lg:px-4 py-1 lg:border-l border-gray-200">
+          <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Activity</label>
+            <select id="sstyle" class="w-full text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer bg-transparent outline-none">
+              <option value="">All activities</option>
+              <option value="Trekking">Trekking</option>
+              <option value="Waterfall">Waterfall</option>
+              <option value="Ocean">Ocean</option>
+              <option value="Mountain">Mountain</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 px-3 lg:px-4 py-1 sm:border-l border-gray-200">
+          <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Date</label>
+            <input type="date" class="w-full text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer bg-transparent outline-none" value="2026-10-15">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 px-3 lg:px-4 py-1 lg:border-l border-gray-200">
+          <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Guests</label>
+            <select class="w-full text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer bg-transparent outline-none">
+              <option>1 Guest</option>
+              <option selected>2 Guests</option>
+              <option>3–6 Guests</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2 lg:col-span-1 p-1">
+          <button type="submit" class="w-full lg:w-auto bg-[#18181b] hover:bg-black text-white font-semibold text-xs sm:text-sm px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-md">
+            Booking Now
+          </button>
+        </div>
+
+      </form>
+  </div>
+
+  <!-- ================= 3 MAIN PACKAGES ================= -->
+  <section id="packages" class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-20 sm:mt-28">
+    <div class="text-center rv">
+      <p class="text-xs tracking-[.3em] text-brand font-semibold">SOULVANA ADVENTURE</p>
+      <h2 class="text-3xl sm:text-5xl font-bold mt-3">3 Main Packages</h2>
+      <p class="text-mut text-sm sm:text-base mt-3 max-w-md mx-auto">Our signature journeys across Bali — each one designed to take you further, at your own pace.</p>
+    </div>
+
+    <div class="mt-12 flex md:grid md:grid-cols-3 gap-6 lg:gap-8 md:items-start overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-10 -mx-5 px-5 md:mx-0 md:px-0" style="scrollbar-width:none">
+
+      <article id="pkg-1" class="card rv group shrink-0 w-[82%] sm:w-[48%] md:w-auto snap-center flex flex-col bg-white rounded-[28px] overflow-hidden border border-[#e4eef2] shadow-[0_20px_50px_rgba(15,60,80,.10)]">
+        <!-- image header -->
+        <div class="relative aspect-[59/50] overflow-hidden">
+          <div class="ph fall w-full h-full"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0b2838]/90 via-[#0b2838]/30 to-transparent"></div>
+          <div class="absolute bottom-0 inset-x-0 p-6 text-white z-10">
+            <p class="text-[10px] sm:text-[11px] tracking-[.22em] font-bold text-sky-200">PACKAGE 01 • JUNGLE TREK</p>
+            <h3 class="font-serif italic text-[24px] sm:text-[26px] leading-tight mt-1.5">Where the Jungle Meets the Falls</h3>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="flex flex-col flex-1 p-6 lg:p-7">
+          <h4 class="text-[26px] sm:text-[30px] font-extrabold text-navy tracking-tight leading-none">PERIODE 2026</h4>
+
+          <div class="mt-5 flex items-center gap-3.5 rounded-2xl bg-[#eef6f9] border border-[#d9e9ef] px-4 py-3.5">
+            <span class="w-11 h-11 shrink-0 rounded-xl bg-white grid place-items-center shadow-sm"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#123B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+            <div class="min-w-0 flex-1">
+              <p class="text-[10px] tracking-[.18em] font-bold text-mut">NEXT TRIP</p>
+              <p class="text-[15px] font-bold text-navy mt-0.5">Sat, 24 Oct 2026</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[11px] font-extrabold text-emerald-700 tracking-wide">6 SLOTS OPEN</p>
+              <p class="text-[11px] text-mut mt-0.5">Max 8 guests</p>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-2"><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Sekumpul Falls</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• River Crossing</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Village Trail</span></div>
+
+          <p class="text-[14px] text-mut leading-relaxed mt-4">A guided deep-forest walk to Bali’s most dramatic waterfalls, with local guides and a slow, unhurried pace.</p>
+
+          <div class="mt-5 flex items-center gap-2.5 flex-wrap">
+            <span class="text-[10px] tracking-[.18em] font-bold text-mut">DURATION:</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">1 Day</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">2 Day</span>
+          </div>
+
+          <div class="mt-auto pt-6">
+            <div class="border-t border-[#e4eef2] pt-5 flex items-end justify-between gap-3">
+              <div>
+                <p class="text-[10px] tracking-[.18em] font-bold text-mut">STARTING AT / GUEST</p>
+                <p class="text-[22px] font-extrabold text-navy mt-1 leading-none">Rp 850.000</p>
+              </div>
+              <a href="#footer" class="inline-flex items-center gap-2 bg-navy text-white text-[13px] font-bold tracking-wide rounded-full px-6 py-3.5 transition hover:bg-brand hover:-translate-y-0.5">BOOK NOW <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pkg-2" class="pkg-closed card rv group shrink-0 w-[82%] sm:w-[48%] md:w-auto snap-center md:mt-12 flex flex-col bg-white rounded-[28px] overflow-hidden border border-[#e4eef2] shadow-[0_20px_50px_rgba(15,60,80,.10)]">
+        <!-- image header -->
+        <div class="relative aspect-[59/50] overflow-hidden">
+          <span class="absolute top-4 right-4 z-20 inline-flex items-center gap-1.5 bg-white/95 text-rose-600 text-[11px] font-extrabold tracking-[.18em] px-3.5 py-1.5 rounded-full shadow-lg"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="11" width="15" height="9.5" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>CLOSED</span>
+          <div class="ph mtn w-full h-full"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0b2838]/90 via-[#0b2838]/30 to-transparent"></div>
+          <div class="absolute bottom-0 inset-x-0 p-6 text-white z-10">
+            <p class="text-[10px] sm:text-[11px] tracking-[.22em] font-bold text-sky-200">PACKAGE 02 • SUNRISE HIGHLANDS</p>
+            <h3 class="font-serif italic text-[24px] sm:text-[26px] leading-tight mt-1.5">Sunrise Above the Clouds</h3>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="pkg-body flex flex-col flex-1 p-6 lg:p-7">
+          <h4 class="text-[26px] sm:text-[30px] font-extrabold text-navy tracking-tight leading-none">PERIODE 2027</h4>
+
+          <div class="mt-5 flex items-center gap-3.5 rounded-2xl bg-[#eef6f9] border border-[#d9e9ef] px-4 py-3.5">
+            <span class="w-11 h-11 shrink-0 rounded-xl bg-white grid place-items-center shadow-sm"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#123B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+            <div class="min-w-0 flex-1">
+              <p class="text-[10px] tracking-[.18em] font-bold text-mut">NEXT TRIP</p>
+              <p class="text-[15px] font-bold text-navy mt-0.5">Sun, 01 Nov 2026</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[11px] font-extrabold text-rose-600 tracking-wide">CLOSED</p>
+              <p class="text-[11px] text-mut mt-0.5">Max 6 guests</p>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-2"><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Ridge Sunrise</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Twin Lakes View</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Highland Breakfast</span></div>
+
+          <p class="text-[14px] text-mut leading-relaxed mt-4">Leave before dawn and watch the Munduk highlands turn gold from a quiet ridge above the cloud line.</p>
+
+          <div class="mt-5 flex items-center gap-2.5 flex-wrap">
+            <span class="text-[10px] tracking-[.18em] font-bold text-mut">DURATION:</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">Half Day</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">1 Day</span>
+          </div>
+
+          <div class="mt-auto pt-6">
+            <div class="border-t border-[#e4eef2] pt-5 flex items-end justify-between gap-3">
+              <div>
+                <p class="text-[10px] tracking-[.18em] font-bold text-mut">STARTING AT / GUEST</p>
+                <p class="text-[22px] font-extrabold text-navy mt-1 leading-none">Rp 650.000</p>
+              </div>
+              <button type="button" disabled aria-disabled="true" title="Periode ini sudah ditutup" class="inline-flex items-center gap-2 bg-gray-200 text-gray-500 text-[13px] font-bold tracking-wide rounded-full px-6 py-3.5 cursor-not-allowed select-none">BOOK NOW <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="11" width="15" height="9.5" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pkg-3" class="pkg-closed card rv group shrink-0 w-[82%] sm:w-[48%] md:w-auto snap-center flex flex-col bg-white rounded-[28px] overflow-hidden border border-[#e4eef2] shadow-[0_20px_50px_rgba(15,60,80,.10)]">
+        <!-- image header -->
+        <div class="relative aspect-[59/50] overflow-hidden">
+          <span class="absolute top-4 right-4 z-20 inline-flex items-center gap-1.5 bg-white/95 text-rose-600 text-[11px] font-extrabold tracking-[.18em] px-3.5 py-1.5 rounded-full shadow-lg"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="11" width="15" height="9.5" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>CLOSED</span>
+          <div class="ph sea w-full h-full"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0b2838]/90 via-[#0b2838]/30 to-transparent"></div>
+          <div class="absolute bottom-0 inset-x-0 p-6 text-white z-10">
+            <p class="text-[10px] sm:text-[11px] tracking-[.22em] font-bold text-sky-200">PACKAGE 03 • NORTH COAST</p>
+            <h3 class="font-serif italic text-[24px] sm:text-[26px] leading-tight mt-1.5">The Sea Comes Alive</h3>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="pkg-body flex flex-col flex-1 p-6 lg:p-7">
+          <h4 class="text-[26px] sm:text-[30px] font-extrabold text-navy tracking-tight leading-none">PERIODE 2028</h4>
+
+          <div class="mt-5 flex items-center gap-3.5 rounded-2xl bg-[#eef6f9] border border-[#d9e9ef] px-4 py-3.5">
+            <span class="w-11 h-11 shrink-0 rounded-xl bg-white grid place-items-center shadow-sm"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#123B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+            <div class="min-w-0 flex-1">
+              <p class="text-[10px] tracking-[.18em] font-bold text-mut">NEXT TRIP</p>
+              <p class="text-[15px] font-bold text-navy mt-0.5">Fri, 06 Nov 2026</p>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-[11px] font-extrabold text-rose-600 tracking-wide">CLOSED</p>
+              <p class="text-[11px] text-mut mt-0.5">Max 10 guests</p>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-2"><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Dawn Dolphin Sail</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Coral Snorkel</span><span class="text-[12px] text-navy bg-[#eef6f9] border border-[#d9e9ef] rounded-lg px-3 py-1.5">• Fisher’s Breakfast</span></div>
+
+          <p class="text-[14px] text-mut leading-relaxed mt-4">Set out at first light and meet the northern coastline the way local fishermen have always known it.</p>
+
+          <div class="mt-5 flex items-center gap-2.5 flex-wrap">
+            <span class="text-[10px] tracking-[.18em] font-bold text-mut">DURATION:</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">Half Day</span><span class="text-[12px] font-bold text-navy bg-[#d9eef5] rounded-full px-3.5 py-1.5">1 Day</span>
+          </div>
+
+          <div class="mt-auto pt-6">
+            <div class="border-t border-[#e4eef2] pt-5 flex items-end justify-between gap-3">
+              <div>
+                <p class="text-[10px] tracking-[.18em] font-bold text-mut">STARTING AT / GUEST</p>
+                <p class="text-[22px] font-extrabold text-navy mt-1 leading-none">Rp 550.000</p>
+              </div>
+              <button type="button" disabled aria-disabled="true" title="Periode ini sudah ditutup" class="inline-flex items-center gap-2 bg-gray-200 text-gray-500 text-[13px] font-bold tracking-wide rounded-full px-6 py-3.5 cursor-not-allowed select-none">BOOK NOW <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="11" width="15" height="9.5" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= ABOUT SECTION ================= -->
+  <section id="about" class="relative max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-24 sm:mt-32 py-8 overflow-hidden">
+    
+    <div class="absolute -left-20 top-1/4 w-96 h-96 bg-[#0E9FBA]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute -right-20 bottom-10 w-80 h-80 bg-amber-200/25 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 rv mb-12 sm:mb-16">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-[#0E9FBA]/10 text-brand border border-brand/25 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider mb-3.5">
+          <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+          ABOUT SOULVANA TRAVEL
+        </div>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-navy tracking-tight leading-[1.12]">
+          Discover the soul of Bali, <br>
+          <span class="font-serif italic font-normal text-brand">experienced differently.</span>
+        </h2>
+      </div>
+
+      <div class="max-w-xs md:text-right">
+        <p class="text-xs sm:text-sm text-mut leading-relaxed">
+          Kami percaya perjalanan sejati bukan tentang terburu-buru mengejar daftar tempat, melainkan menyatu dengan ritme alam dan kehangatan pulau dewata.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <div class="lg:col-span-6 relative rv">
+        <div class="relative rounded-[32px] sm:rounded-[38px] overflow-hidden shadow-[0_25px_60px_rgba(18,59,82,0.18)] border-4 border-white aspect-[4/3.8] bg-slate-900 group">
+          <img 
+            src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=85" 
+            alt="Authentic Bali Rainforest Trek" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+
+          <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-black/45 backdrop-blur-md border border-white/20 text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded-full shadow-md">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            North Bali Rainforest · Munduk Ridge
+          </div>
+        </div>
+
+        <div class="absolute -top-4 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md border border-gray-100 shadow-[0_12px_30px_rgba(0,0,0,0.1)] rounded-2xl px-4 py-2.5 flex items-center gap-3 z-20">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-sm shrink-0">
+            ★ 4.9
+          </div>
+          <div>
+            <span class="block text-xs font-extrabold text-navy leading-none">100% Native Guides</span>
+            <span class="block text-[10px] text-mut mt-0.5">Kearifan lokal asli Bali</span>
+          </div>
+        </div>
+
+        <div class="relative z-20 -mt-14 sm:-mt-16 mx-4 sm:mx-6 bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-[0_16px_45px_rgba(18,59,82,0.14)] border border-white/80">
+          <div class="flex items-center justify-between gap-3">
+            <span class="inline-flex items-center gap-1.5 bg-brand text-white text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              Our Story
+            </span>
+            <span class="text-[11px] text-mut font-medium">Est. North Bali</span>
+          </div>
+          <h3 class="font-bold text-base sm:text-lg text-navy mt-2.5 leading-snug">Menghubungkan Hati dengan Alam Asli Bali</h3>
+          <p class="text-xs sm:text-[13px] text-mut mt-1.5 leading-relaxed">
+            Soulvana lahir dari keinginan membawa wisatawan menyusuri jalur tersembunyi tanpa merusak keaslian desa, air terjun suci, dan kehidupan warga lokal.
+          </p>
+          <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+            <span class="text-[11px] text-mut">Kenali cerita &amp; nilai-nilai kami</span>
+            <a href="about.html" class="group/sd shrink-0 inline-flex items-center gap-2 bg-brand text-white text-xs sm:text-[13px] font-bold pl-5 pr-1.5 py-1.5 rounded-full shadow-[0_8px_20px_rgba(14,159,186,.3)] hover:bg-navy hover:-translate-y-0.5 active:scale-95 transition-all duration-300">
+              See detail
+              <span class="w-7 h-7 rounded-full bg-white text-brand grid place-items-center transition-transform duration-300 group-hover/sd:rotate-45"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 space-y-4 sm:space-y-5 rv">
+        <div class="group relative bg-white hover:bg-gradient-to-r hover:from-white hover:to-sky-50/40 border border-gray-200/90 hover:border-brand/40 rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_35px_rgba(14,159,186,0.12)] transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-brand flex items-center justify-center shrink-0 group-hover:bg-brand group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-bold text-brand uppercase tracking-wider bg-brand/10 px-2.5 py-0.5 rounded-full">Our Approach</span>
+                <span class="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-400 text-xs transition-all duration-300 group-hover:translate-x-0.5">→</span>
+              </div>
+              <h3 class="font-bold text-base sm:text-lg text-navy mt-1.5 group-hover:text-brand transition-colors">Experiences, not just tours</h3>
+              <p class="text-xs sm:text-sm text-mut mt-1.5 leading-relaxed">
+                Setiap rencana perjalanan disusun intim dan fleksibel. Bukan jadwal padat rombongan besar, melainkan pengalaman yang terasa personal dan bermakna.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative bg-white hover:bg-gradient-to-r hover:from-white hover:to-emerald-50/40 border border-gray-200/90 hover:border-emerald-500/40 rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_35px_rgba(16,185,129,0.12)] transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.4 7.6 11.9a.7.7 0 0 0 .8 0C13 21.4 20 15.4 20 10a8 8 0 0 0-8-8z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider bg-emerald-500/10 px-2.5 py-0.5 rounded-full">Local Perspective</span>
+                <span class="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center text-gray-400 text-xs transition-all duration-300 group-hover:translate-x-0.5">→</span>
+              </div>
+              <h3 class="font-bold text-base sm:text-lg text-navy mt-1.5 group-hover:text-emerald-700 transition-colors">Guided with native wisdom</h3>
+              <p class="text-xs sm:text-sm text-mut mt-1.5 leading-relaxed">
+                Dipandu oleh pemuda lokal yang lahir dan besar di dataran tinggi Bali Utara. Mengetahui waktu terbaik air terjun tanpa kerumunan dan cerita mistis pura tua.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative bg-white hover:bg-gradient-to-r hover:from-white hover:to-amber-50/40 border border-gray-200/90 hover:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_35px_rgba(245,158,11,0.12)] transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 12"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider bg-amber-500/10 px-2.5 py-0.5 rounded-full">Respect for Nature</span>
+                <span class="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-amber-500 group-hover:text-white flex items-center justify-center text-gray-400 text-xs transition-all duration-300 group-hover:translate-x-0.5">→</span>
+              </div>
+              <h3 class="font-bold text-base sm:text-lg text-navy mt-1.5 group-hover:text-amber-700 transition-colors">Nature-first adventures</h3>
+              <p class="text-xs sm:text-sm text-mut mt-1.5 leading-relaxed">
+                Kami berjalan dengan penuh etika di hutan lindung, sungai, dan pesisir. Menjaga kelestarian alam agar tetap alami bagi generasi yang akan datang.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BALI DESTINATION ================= -->
+  <section id="places" class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-20 sm:mt-28">
+    <div class="grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-12 md:gap-16 items-center">
+      
+      <div class="relative w-full max-w-[560px] mx-auto aspect-[1/.9] rv" role="img" aria-label="Kumpulan foto destinasi Bali">
+        <svg class="absolute left-0 top-[8%] w-[16%]" viewBox="0 0 80 90" fill="none" aria-hidden="true"><path d="M70 62C40 70 8 60 6 36 4 20 22 14 34 22" stroke="#0E9FBA" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/><path d="M40 6l30 10-12 6 4 12-14-10-8 8z" fill="#0E9FBA"/></svg>
+        <div class="absolute bg-white p-1.5 sm:p-2.5 rounded-xl shadow-[0_10px_30px_rgba(15,60,80,.18)]" style="left:10%;top:4%;width:64%;height:58%;transform:rotate(-3deg)"><div class="ph sea w-full h-full rounded-lg"></div></div>
+        <div class="absolute bg-white p-1.5 sm:p-2.5 rounded-xl shadow-[0_10px_30px_rgba(15,60,80,.18)]" style="left:66%;top:0%;width:32%;height:33%;transform:rotate(3deg)"><div class="ph cult w-full h-full rounded-lg"></div></div>
+        <div class="absolute bg-white p-1.5 sm:p-2.5 rounded-xl shadow-[0_10px_30px_rgba(15,60,80,.18)]" style="left:0%;top:52%;width:32%;height:36%;transform:rotate(-4deg)"><div class="ph mtn w-full h-full rounded-lg"></div></div>
+        <div class="absolute bg-white p-1.5 sm:p-2.5 rounded-xl shadow-[0_10px_30px_rgba(15,60,80,.18)]" style="left:60%;top:52%;width:37%;height:42%;transform:rotate(3deg)"><div class="ph wild w-full h-full rounded-lg"></div></div>
+        <svg class="absolute right-[2%] top-[42%] w-[8%]" viewBox="0 0 40 40" fill="none" stroke="#0E9FBA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 4l8 10M20 2l2 14M34 8l-10 8"/></svg>
+      </div>
+
+      <div class="rv">
+        <p class="flex items-center gap-3 text-xs font-semibold tracking-[.2em] text-brand"><span class="w-10 h-px bg-brand"></span>POPULAR DESTINATION</p>
+        <h2 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold text-navy leading-tight">Bali, <span class="text-brand">Indonesia</span></h2>
+        <p class="mt-5 text-sm sm:text-base text-mut leading-relaxed max-w-lg">Bali is a tropical paradise known for its stunning beaches, rich culture, and breathtaking landscapes. From the vibrant beach clubs to the serene temples, Bali offers the perfect blend of adventure and relaxation.</p>
+        
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+          <div class="flex items-center gap-3"><span class="w-12 h-12 rounded-full grid place-items-center text-brand shrink-0" style="border:1px solid rgba(14,159,186,.35)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 1 9 8H3a9 9 0 0 1 9-8zM12 11v9M8 20h8"/></svg></span><span class="text-xs sm:text-sm text-mut leading-snug">Beautiful<br>Beaches</span></div>
+          <div class="flex items-center gap-3"><span class="w-12 h-12 rounded-full grid place-items-center text-brand shrink-0" style="border:1px solid rgba(14,159,186,.35)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19L9 7l4 7 3-4 6 9z"/></svg></span><span class="text-xs sm:text-sm text-mut leading-snug">Stunning<br>Landscapes</span></div>
+          <div class="flex items-center gap-3"><span class="w-12 h-12 rounded-full grid place-items-center text-brand shrink-0" style="border:1px solid rgba(14,159,186,.35)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="text-xs sm:text-sm text-mut leading-snug">Rich<br>Culture</span></div>
+        </div>
+
+        <div class="mt-8 pt-7" style="border-top:1px solid #e5e7eb">
+          <a href="#explore" class="flex items-center gap-4 rounded-2xl px-6 py-4.5 transition hover:brightness-95" style="background:#eaf3fc">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#0E9FBA"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            <span><span class="block text-sm sm:text-base font-bold text-navy">Bali, Indonesia</span><span class="block text-xs text-mut mt-0.5">A paradise for every traveler</span></span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FEEL THE BEAUTY BANNER (OMBAK MENJEPIT 4 PILAR) ================= -->
+  <section class="relative mt-20 sm:mt-28 h-[390px] sm:h-[450px] lg:h-[490px] overflow-hidden" aria-label="Feel the beauty of the world">
+    
+    <div class="bayimg absolute inset-0 bg-cover bg-center" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/55"></div>
+
+    <!-- Ombak Atas Banner -->
+    <div class="absolute top-0 inset-x-0 overflow-hidden leading-none z-10 pointer-events-none select-none">
+      <svg class="w-full h-12 sm:h-16 lg:h-24 block" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+        <path d="M0,0 L1440,0 L1440,35 C1220,75 980,10 700,55 C380,100 180,20 0,30 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- Konten Teks & Tombol Play 2 -->
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-5 pb-16 sm:pb-24 sa rv">
+      <button id="play3" aria-label="Play video" class="w-14 h-14 sm:w-18 sm:h-18 rounded-full grid place-items-center hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl cursor-pointer" style="border:2px solid #fff">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <h2 class="mt-4 text-2xl sm:text-4xl font-extrabold tracking-tight" style="text-shadow:0 3px 14px rgba(0,0,0,.5)">
+        Feel the Beauty of the World
+      </h2>
+      <p class="mt-2 text-xs sm:text-base text-white/95 max-w-sm sm:max-w-none font-medium" style="text-shadow:0 1px 8px rgba(0,0,0,.45)">
+        Travel is the only thing you buy that makes you richer.
+      </p>
+    </div>
+
+    <!-- Ombak Bawah Banner: Dijepit Kartu 4 Pilar -->
+    <div class="absolute bottom-0 inset-x-0 overflow-hidden leading-none z-10 pointer-events-none select-none">
+      <svg class="w-full h-20 sm:h-28 lg:h-36 block" viewBox="0 0 1440 160" fill="none" preserveAspectRatio="none">
+        <path d="M0,70 C320,15 480,135 780,50 C1080,-20 1280,115 1440,65 L1440,161 L0,161 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ================= 4 PILAR (MENJEPIT OMBAK) + VALUE PROPOSITION ================= -->
+  <section class="relative bg-white pt-0">
+    
+    <!-- 4 PILAR FLOATING DOCK -->
+    <div class="relative z-20 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-16 lg:-mt-20">
+      <div class="bg-white rounded-3xl p-5 sm:p-7 lg:p-8 shadow-[0_16px_40px_rgba(18,59,82,0.12)] border border-sky-100 rv">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 lg:divide-x divide-gray-100">
+          
+          <div class="flex flex-col items-start group lg:px-4 first:lg:pl-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mb-3 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6">
+                <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-xs sm:text-base text-navy group-hover:text-brand transition-colors">Best Price Guarantee</h4>
+            <p class="text-[11px] sm:text-xs text-mut mt-1 leading-relaxed">Penawaran jujur tanpa biaya tersembunyi.</p>
+          </div>
+
+          <div class="flex flex-col items-start group lg:px-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-cyan-50 text-brand flex items-center justify-center mb-3 group-hover:bg-brand group-hover:text-white transition-all duration-300 shadow-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-xs sm:text-base text-navy group-hover:text-brand transition-colors">Safe & Secure</h4>
+            <p class="text-[11px] sm:text-xs text-mut mt-1 leading-relaxed">Prosedur standar keselamatan & asuransi.</p>
+          </div>
+
+          <div class="flex flex-col items-start group lg:px-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-xs sm:text-base text-navy group-hover:text-brand transition-colors">24/7 Support</h4>
+            <p class="text-[11px] sm:text-xs text-mut mt-1 leading-relaxed">Pendampingan lokal kapan pun dibutuhkan.</p>
+          </div>
+
+          <div class="flex flex-col items-start group lg:px-6 last:lg:pr-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mb-3 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                <line x1="9" y1="3" x2="9" y2="18"/>
+                <line x1="15" y1="6" x2="15" y2="21"/>
+                <circle cx="12" cy="11" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-xs sm:text-base text-navy group-hover:text-brand transition-colors">Expert Guides</h4>
+            <p class="text-[11px] sm:text-xs text-mut mt-1 leading-relaxed">Pemandu lokal asli yang paham alam Bali.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Ombak Masuk Menuju Background Biru Navy -->
+    <div class="relative w-full overflow-hidden leading-none mt-10 sm:mt-14 -mb-1 pointer-events-none select-none">
+      <svg class="w-full h-14 sm:h-20 lg:h-28 block text-navy" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+        <path d="M0,45 C320,115 540,15 880,75 C1140,120 1320,35 1440,55 L1440,121 L0,121 Z" fill="#123B52"/>
+      </svg>
+    </div>
+
+    <!-- Container Biru Navy (More Than Just a Trip) -->
+    <div class="relative bg-navy text-white pt-4 sm:pt-6 pb-0 overflow-hidden">
+      
+      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-[#0E9FBA]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-[1360px] mx-auto px-5 lg:px-8 sa relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-6 rv">
+            <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3.5 py-1 rounded-full text-xs font-semibold text-amber-300">
+              <svg class="w-3.5 h-3.5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+              THE SOULVANA DIFFERENCE
+            </div>
+
+            <h3 class="font-serif italic text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+              More Than Just a Trip
+            </h3>
+            
+            <p class="text-xs sm:text-sm text-white/80 leading-relaxed max-w-lg">
+              Kami tidak sekadar membawa Anda berpindah tempat. Setiap jalur dirancang personal agar Anda merasakan kedamaian hutan, keagungan pura tua, dan kehangatan penduduk asli Bali dengan ritme yang santai.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 pt-1 border-y border-white/15 py-4 max-w-lg">
+              <div>
+                <span class="block text-xl sm:text-2xl font-black text-amber-400">18+</span>
+                <span class="block text-[11px] text-white/70 mt-0.5 font-medium leading-tight">Jalur Rahasia & Air Terjun</span>
+              </div>
+              <div class="border-x border-white/15 px-3">
+                <span class="block text-xl sm:text-2xl font-black text-white">100%</span>
+                <span class="block text-[11px] text-white/70 mt-0.5 font-medium leading-tight">Pemandu Asli Lokal Bali</span>
+              </div>
+              <div class="pl-2">
+                <span class="block text-xl sm:text-2xl font-black text-amber-400 flex items-center gap-1">
+                  4.9
+                  <svg class="w-3.5 h-3.5 fill-amber-400 inline" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </span>
+                <span class="block text-[11px] text-white/70 mt-0.5 font-medium leading-tight">2.4k+ Ulasan Wisatawan</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5 bg-white/5 border border-white/10 rounded-2xl p-3.5 max-w-lg backdrop-blur-sm">
+              <span class="w-9 h-9 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-amber-300" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.324 1.202-4.041 3.558-4.223 5.378A4.01 4.01 0 0 1 9 11.233c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3-1.704 0-3.418-.912-4.417-1.912zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.324 1.202-4.041 3.558-4.223 5.378A4.01 4.01 0 0 1 19 11.233c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3-1.704 0-3.418-.912-4.417-1.912z"/></svg>
+              </span>
+              <p class="text-[11px] sm:text-xs text-white/85 italic leading-relaxed">
+                "Sunrise di Wanagiri dan ketenangan air terjun Sekumpul terasa magis. Pengalaman paling berkesan selama di Bali!"
+                <span class="block not-italic text-[10px] text-white/50 mt-0.5 font-semibold">— Sarah & David, Australia</span>
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-1 max-w-lg">
+              <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-full border border-white/30 grid place-items-center text-white/80 hover:border-amber-400 hover:text-amber-400 transition" title="Transport">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="8" rx="2"/><path d="M5 11l2-5h10l2 5"/><circle cx="7" cy="16" r="1.5"/><circle cx="17" cy="16" r="1.5"/></svg>
+                </span>
+                <span class="w-8 h-8 rounded-full border border-white/30 grid place-items-center text-white/80 hover:border-amber-400 hover:text-amber-400 transition" title="Trekking">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                </span>
+                <span class="w-8 h-8 rounded-full border border-white/30 grid place-items-center text-white/80 hover:border-amber-400 hover:text-amber-400 transition" title="Photography">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+                <span class="w-8 h-8 rounded-full border border-white/30 grid place-items-center text-white/80 hover:border-amber-400 hover:text-amber-400 transition" title="Culinary">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2M15 11v11M5 2v20M2 2h6"/></svg>
+                </span>
+                <span class="w-8 h-8 rounded-full border border-white/30 grid place-items-center text-white/80 hover:border-amber-400 hover:text-amber-400 transition" title="Sightseeing">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="14" r="4"/><circle cx="18" cy="14" r="4"/><path d="M10 14h4M6 6l2 4M18 6l-2 4"/></svg>
+                </span>
+              </div>
+
+              <a href="#packages" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-amber-400 hover:text-amber-300 transition group">
+                Explore Our Routes <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="lg:col-span-6 relative flex flex-col items-center lg:items-end pt-6 lg:pt-0 rv">
+            <div class="self-center lg:self-end mb-3 flex items-center gap-2 bg-[#0E9FBA]/20 border border-[#0E9FBA]/40 text-[#7de1f3] px-3.5 py-1 rounded-full text-[11px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0E9FBA] animate-pulse"></span>
+              TOP 3 CURATED DESTINATIONS
+            </div>
+
+            <div class="relative w-full flex items-center justify-center lg:justify-end gap-2.5 sm:gap-4 py-4">
+              <svg class="absolute -bottom-6 -left-6 sm:left-2 w-full max-w-[480px] h-28 pointer-events-none -z-0 opacity-70" viewBox="0 0 500 120" fill="none">
+                <path d="M 10 30 Q 230 120 460 65" stroke="#0E9FBA" stroke-width="2" stroke-dasharray="6 6"/>
+                <g transform="translate(460, 58) rotate(15)">
+                  <path d="M12 2L9 9l-7 1 5 4-2 7 7-4 7 4-2-7 5-4-7-1z" fill="#0E9FBA"/>
+                </g>
+              </svg>
+
+              <!-- Kartu 1 -->
+              <div class="group relative z-10 flex-1 min-w-0 max-w-[125px] sm:flex-none sm:max-w-none sm:w-[155px] md:w-[165px] bg-white p-2 sm:p-2.5 pb-3 sm:pb-3.5 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.35)] -rotate-6 hover:rotate-0 hover:-translate-y-3 hover:scale-105 hover:z-40 transition-all duration-300 cursor-pointer">
+                <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-900">
+                  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Nusa Penida Coast" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                  <span class="absolute top-1.5 left-1.5 bg-black/50 backdrop-blur-md text-[9px] font-semibold text-white px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1">
+                    <svg class="w-2.5 h-2.5 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 17c2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+                    Coastal
+                  </span>
+                </div>
+                <div class="mt-2 px-0.5 flex items-center justify-between text-ink">
+                  <div>
+                    <p class="text-[11px] font-bold leading-tight truncate">Nusa Penida</p>
+                    <p class="text-[9px] text-mut">South Coast</p>
+                  </div>
+                  <span class="text-[10px] font-bold text-amber-500 flex items-center gap-0.5">
+                    <svg class="w-2.5 h-2.5 fill-amber-500" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.9
+                  </span>
+                </div>
+              </div>
+
+              <!-- Kartu 2 -->
+              <div class="group relative z-20 flex-1 min-w-0 max-w-[130px] sm:flex-none sm:max-w-none sm:w-[160px] md:w-[170px] bg-white p-2 sm:p-2.5 pb-3 sm:pb-3.5 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] -translate-y-2 hover:rotate-0 hover:-translate-y-4 hover:scale-105 hover:z-40 transition-all duration-300 cursor-pointer">
+                <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-900">
+                  <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" alt="Bali Temple Heritage" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                  <span class="absolute top-1.5 left-1.5 bg-black/50 backdrop-blur-md text-[9px] font-semibold text-white px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1">
+                    <svg class="w-2.5 h-2.5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16"/><path d="M2 7h20"/><path d="M6 7v13"/><path d="M18 7v13"/><path d="M6 11h12"/></svg>
+                    Culture
+                  </span>
+                </div>
+                <div class="mt-2 px-0.5 flex items-center justify-between text-ink">
+                  <div>
+                    <p class="text-[11px] font-bold leading-tight truncate">Ulun Danu</p>
+                    <p class="text-[9px] text-mut">Bedugul</p>
+                  </div>
+                  <span class="text-[10px] font-bold text-amber-500 flex items-center gap-0.5">
+                    <svg class="w-2.5 h-2.5 fill-amber-500" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    5.0
+                  </span>
+                </div>
+              </div>
+
+              <!-- Kartu 3 -->
+              <div class="group relative z-10 flex-1 min-w-0 max-w-[125px] sm:flex-none sm:max-w-none sm:w-[155px] md:w-[165px] bg-white p-2 sm:p-2.5 pb-3 sm:pb-3.5 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.35)] rotate-6 hover:rotate-0 hover:-translate-y-3 hover:scale-105 hover:z-40 transition-all duration-300 cursor-pointer">
+                <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-900">
+                  <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80" alt="Wanagiri Sunrise" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                  <span class="absolute top-1.5 left-1.5 bg-black/50 backdrop-blur-md text-[9px] font-semibold text-white px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1">
+                    <svg class="w-2.5 h-2.5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                    Sunrise
+                  </span>
+                </div>
+                <div class="mt-2 px-0.5 flex items-center justify-between text-ink">
+                  <div>
+                    <p class="text-[11px] font-bold leading-tight truncate">Wanagiri</p>
+                    <p class="text-[9px] text-mut">Highlands</p>
+                  </div>
+                  <span class="text-[10px] font-bold text-amber-500 flex items-center gap-0.5">
+                    <svg class="w-2.5 h-2.5 fill-amber-500" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.9
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="text-[11px] text-white/50 text-center lg:text-right pt-2 font-medium flex items-center justify-center lg:justify-end gap-1.5">
+              <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+              Sentuh atau arahkan kursor ke kartu untuk melihat rincian lokasi
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Ombak Bawah -->
+      <div class="relative w-full overflow-hidden leading-none mt-16 sm:mt-24 -mb-1 pointer-events-none select-none">
+        <svg class="w-full h-14 sm:h-24 lg:h-32 block" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+          <path d="M0,65 C280,15 560,115 920,45 C1160,-5 1320,70 1440,40 L1440,121 L0,121 Z" fill="#ffffff"/>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= POPULAR PLACES ================= -->
+  <section class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-16 sm:mt-24" id="popular">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 rv">
+      <div>
+        <span class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[.22em] uppercase text-brand"><span class="w-7 h-px bg-brand"></span>Top destinations</span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-bold text-ink tracking-tight">Popular <span class="font-serif italic font-bold text-brand">Place</span></h2>
+        <p class="text-mut text-sm sm:text-base mt-2">Let's enjoy this heaven on earth</p>
+      </div>
+      <div class="flex items-end gap-6 md:max-w-md">
+        <p class="hidden md:block text-xs sm:text-sm text-mut">Bali's wildest corners, from northern coastlines to hidden jungle waterfalls — experiences designed to take you further.</p>
+        <a href="#explore" class="group shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-ink border border-ink/15 rounded-full pl-5 pr-2 py-2 hover:bg-ink hover:text-white transition">
+          View all
+          <span class="w-7 h-7 rounded-full bg-ink text-white group-hover:bg-white group-hover:text-ink grid place-items-center transition"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div id="popGrid" class="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 auto-rows-[190px] sm:auto-rows-[240px] lg:auto-rows-[270px] gap-3 sm:gap-5"></div>
+  </section>
+
+  <!-- ================= JOURNEY / MEMORIES ================= -->
+  <section id="journey" class="relative max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-20 sm:mt-28">
+    <div class="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-brand/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-1/4 left-10 w-72 h-72 bg-amber-200/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="text-center max-w-2xl mx-auto rv mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 bg-[#0E9FBA]/10 text-[#0E9FBA] border border-[#0E9FBA]/25 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider mb-3">
+        <svg class="w-3.5 h-3.5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
+        MINDFUL TRAVEL PHILOSOPHY
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-[#123B52] tracking-tight leading-tight">
+        Travel to make <br class="hidden sm:inline">
+        <span class="font-serif italic font-normal text-brand">sweet memories.</span>
+      </h2>
+      <p class="text-mut text-sm sm:text-base mt-2.5 leading-relaxed">
+        Rasakan ritme perjalanan yang lebih tenang dan mendalam—menyatu dengan alam, budaya, dan kearifan lokal tanpa rasa terburu-buru.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Kolom Gambar -->
+      <div class="order-1 lg:order-2 lg:col-span-5 relative mx-auto w-full max-w-[310px] sm:max-w-[360px] lg:max-w-[380px] rv my-4 sm:my-0">
+        <div class="hidden sm:block absolute inset-0 bg-gradient-to-tr from-sky-100 to-teal-50 rounded-[34px] rotate-3 scale-[1.02] shadow-xl border border-sky-100 pointer-events-none -z-10"></div>
+        
+        <div class="relative rounded-[28px] sm:rounded-[32px] aspect-[3/4] shadow-2xl overflow-hidden bg-slate-900 border-4 border-white">
+          <img 
+            id="journeyImg" 
+            src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=900&q=85" 
+            alt="Sunrise summits" 
+            class="w-full h-full object-cover object-center transition-all duration-500 ease-out"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
+
+          <div class="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-10 flex items-center gap-2 bg-black/45 backdrop-blur-md border border-white/20 text-white text-[10px] font-semibold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-md">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            North Bali Highlands · 8.24° S
+          </div>
+
+          <div class="absolute bottom-3.5 inset-x-3.5 sm:bottom-4 sm:inset-x-4 z-10 text-white pointer-events-none">
+            <p class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-sky-200">Featured Memory</p>
+            <h4 class="text-xs sm:text-sm font-bold text-white drop-shadow">Golden Hour Over Wanagiri</h4>
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          data-journey="trek" 
+          class="j-btn absolute -left-2 sm:-left-4 lg:-left-2 xl:-left-6 top-14 sm:top-16 bg-white/95 backdrop-blur-md shadow-[0_10px_22px_rgba(0,0,0,0.12)] rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer border-2 border-transparent text-ink group z-20">
+          <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 12"/></svg>
+          </span>
+          <span>Rainforest treks</span>
+        </button>
+        
+        <button 
+          type="button" 
+          data-journey="mtn" 
+          class="j-btn absolute -right-2 sm:-right-4 lg:-right-2 xl:-right-6 top-40 sm:top-48 bg-white/95 backdrop-blur-md shadow-[0_12px_24px_rgba(14,159,186,0.22)] rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer border-2 border-brand text-brand ring-2 ring-brand/20 scale-105 group z-20">
+          <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#0E9FBA]/10 text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white transition-colors">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </span>
+          <span>Sunrise summits</span>
+        </button>
+        
+        <button 
+          type="button" 
+          data-journey="fall" 
+          class="j-btn absolute -left-1 sm:-left-3 lg:-left-1 xl:-left-4 bottom-8 sm:bottom-10 bg-white/95 backdrop-blur-md shadow-[0_10px_22px_rgba(0,0,0,0.12)] rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer border-2 border-transparent text-ink group z-20">
+          <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-sky-50 text-cyan-500 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </span>
+          <span>Hidden waterfalls</span>
+        </button>
+      </div>
+
+      <!-- Kolom Teks Langkah -->
+      <div class="order-2 lg:order-1 lg:col-span-7 space-y-4 rv">
+        <div class="group relative bg-white/80 hover:bg-white border border-gray-200/80 hover:border-brand/40 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(14,159,186,0.12)] transition-all duration-300 flex items-start gap-3.5 sm:gap-4">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-sky-50 text-brand flex flex-col items-center justify-center shrink-0 border border-sky-100 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <span class="text-[9px] font-bold uppercase tracking-wider leading-none">Step</span>
+            <span class="text-sm sm:text-base font-extrabold leading-tight mt-0.5">01</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-sm sm:text-base text-[#123B52] group-hover:text-brand transition-colors">Discover your direction</h3>
+              <span class="w-5 h-5 rounded-full bg-gray-100 group-hover:bg-brand/10 flex items-center justify-center transition-colors">
+                <svg class="w-3 h-3 text-gray-400 group-hover:text-brand transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-mut mt-1 leading-relaxed">
+              Air terjun tersembunyi, puncak berkabut, pesisir samudra lumba-lumba, atau pura magis—pilih petualangan yang paling memikat rasa ingin tahu Anda.
+            </p>
+          </div>
+        </div>
+
+        <div class="group relative bg-white/80 hover:bg-white border border-gray-200/80 hover:border-brand/40 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(14,159,186,0.12)] transition-all duration-300 flex items-start gap-3.5 sm:gap-4">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emerald-50 text-emerald-600 flex flex-col items-center justify-center shrink-0 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+            <span class="text-[9px] font-bold uppercase tracking-wider leading-none">Step</span>
+            <span class="text-sm sm:text-base font-extrabold leading-tight mt-0.5">02</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-sm sm:text-base text-[#123B52] group-hover:text-brand transition-colors">Get back to nature</h3>
+              <span class="w-5 h-5 rounded-full bg-gray-100 group-hover:bg-brand/10 flex items-center justify-center transition-colors">
+                <svg class="w-3 h-3 text-gray-400 group-hover:text-brand transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-mut mt-1 leading-relaxed">
+              Petualangan ramah ekosistem yang dipandu langsung oleh penduduk asli Bali yang menghormati hutan, sungai, dan tanah leluhur.
+            </p>
+          </div>
+        </div>
+
+        <div class="group relative bg-white/80 hover:bg-white border border-gray-200/80 hover:border-brand/40 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(14,159,186,0.12)] transition-all duration-300 flex items-start gap-3.5 sm:gap-4">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-amber-50 text-amber-600 flex flex-col items-center justify-center shrink-0 border border-amber-100 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
+            <span class="text-[9px] font-bold uppercase tracking-wider leading-none">Step</span>
+            <span class="text-sm sm:text-base font-extrabold leading-tight mt-0.5">03</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-sm sm:text-base text-[#123B52] group-hover:text-brand transition-colors">Remember the small moments</h3>
+              <span class="w-5 h-5 rounded-full bg-gray-100 group-hover:bg-brand/10 flex items-center justify-center transition-colors">
+                <svg class="w-3 h-3 text-gray-400 group-hover:text-brand transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-mut mt-1 leading-relaxed">
+              Jadwal yang fleksibel dan leluasa tanpa dikejar waktu rombongan besar, memberi ruang untuk setiap tawa dan panorama berharga.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-wrap items-center gap-3.5">
+          <a href="#explore" class="inline-flex items-center gap-2 bg-brand hover:bg-td text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-md shadow-brand/25 hover:shadow-brand/40 group">
+            Start Your Exploration
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="text-[11px] sm:text-xs text-mut font-medium flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            100% Fleksibel & Terkurasi
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EXPLORE EXPERIENCES ================= -->
+  <section id="explore" class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-24 sm:mt-32">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-3 rv">
+      <div><h2 class="text-3xl sm:text-4xl font-bold text-ink">Explore more</h2><p class="text-mut text-sm sm:text-base mt-1">Let's go on an adventure</p></div>
+      <p class="text-xs sm:text-sm text-mut max-w-sm">Thoughtfully designed experiences across North Bali and beyond. Pricing shared on enquiry.</p>
+    </div>
+    
+    <div class="mt-8 flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="chips" role="tablist"></div>
+    <div id="grid" class="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 lg:gap-8"></div>
+    <p id="empty" class="hidden text-center text-mut text-base py-10">No experiences in this category yet.</p>
+    <div class="text-center mt-10"><button id="more" class="border border-gray-300 rounded-full px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-gray-50 transition">Show more</button></div>
+  </section>
+
+  <!-- ================= STAMPS / DESTINATIONS ================= -->
+  <section class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-24 sm:mt-32">
+    <div class="text-center rv"><h2 class="text-2xl sm:text-4xl font-bold text-ink">Where will you go?</h2><p class="text-mut text-sm sm:text-base mt-2">Find and enquire about a great experience.</p></div>
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      
+      <button data-d="North Bali" class="stamp rv text-center relative rounded-2xl">
+        <span class="absolute -top-3.5 -left-3.5 w-9 h-9 rounded-full bg-brand text-white grid place-items-center shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+        </span>
+        <div class="ph sea aspect-[4/5] rounded-lg"></div>
+        <p class="text-xs tracking-[.15em] sm:tracking-[.25em] text-mut mt-3.5 font-bold">NORTH BALI</p>
+      </button>
+
+      <button data-d="Munduk" class="stamp rv text-center relative rounded-2xl">
+        <span class="absolute -top-3.5 -left-3.5 w-9 h-9 rounded-full bg-brand text-white grid place-items-center shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+        </span>
+        <div class="ph trek aspect-[4/5] rounded-lg"></div>
+        <p class="text-xs tracking-[.15em] sm:tracking-[.25em] text-mut mt-3.5 font-bold">MUNDUK</p>
+      </button>
+
+      <button data-d="Sekumpul" class="stamp rv text-center relative rounded-2xl">
+        <span class="absolute -top-3.5 -left-3.5 w-9 h-9 rounded-full bg-brand text-white grid place-items-center shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+        </span>
+        <div class="ph fall aspect-[4/5] rounded-lg"></div>
+        <p class="text-xs tracking-[.15em] sm:tracking-[.25em] text-mut mt-3.5 font-bold">SEKUMPUL</p>
+      </button>
+
+      <button data-d="Lovina" class="stamp rv text-center relative rounded-2xl">
+        <span class="absolute -top-3.5 -left-3.5 w-9 h-9 rounded-full bg-brand text-white grid place-items-center shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+        </span>
+        <div class="ph wild aspect-[4/5] rounded-lg"></div>
+        <p class="text-xs tracking-[.15em] sm:tracking-[.25em] text-mut mt-3.5 font-bold">LOVINA</p>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ================= CINEMATIC VIDEO SHOWCASE ================= -->
+  <section class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-24 sm:mt-32">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 rv mb-8">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-[#0E9FBA]/10 text-[#0E9FBA] border border-[#0E9FBA]/25 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider mb-2.5">
+          <span class="w-2 h-2 rounded-full bg-[#0E9FBA] animate-ping"></span>
+          CINEMATIC SHOWCASE
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-[#123B52] tracking-tight leading-tight">
+          See Bali differently, <br class="hidden sm:inline">
+          <span class="font-serif italic font-normal text-[#0E9FBA]">feel every moment.</span>
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <p class="hidden lg:block text-xs text-gray-500 max-w-xs text-right leading-relaxed">
+          Saksikan keindahan tersembunyi air terjun utara, puncak berkabut Wanagiri, dan ritme alam Bali dari sudut pandang sinematik.
+        </p>
+        <a href="#footer" class="inline-flex items-center gap-2.5 bg-[#123B52] hover:bg-[#0E9FBA] text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 shrink-0 group">
+          Enquire Experience
+          <span class="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center text-xs group-hover:translate-x-0.5 transition-transform">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="videoCard" class="group relative rounded-[32px] sm:rounded-[40px] h-[380px] sm:h-[480px] lg:h-[560px] overflow-hidden shadow-[0_25px_60px_rgba(18,59,82,0.22)] border border-black/10 rv">
+      <img 
+        src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2200&q=85" 
+        alt="Bali Cinematic View" 
+        class="absolute inset-0 w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30 pointer-events-none"></div>
+
+      <div class="absolute top-6 left-6 sm:top-8 sm:left-8 z-20 flex items-center gap-2.5">
+        <span class="bg-black/50 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+          4K ULTRA HD
+        </span>
+        <span class="bg-black/50 backdrop-blur-md border border-white/20 text-white/90 text-[11px] sm:text-xs font-medium px-3.5 py-1.5 rounded-full hidden sm:inline-flex items-center gap-1.5 shadow-lg">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          Binaural Soundscapes
+        </span>
+      </div>
+
+      <div class="absolute top-6 right-6 sm:top-8 sm:right-8 z-20">
+        <span class="bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-semibold px-4 py-1.5 rounded-full">
+          OFFICIAL TRAILER
+        </span>
+      </div>
+
+      <!-- Tombol Play Video 3 -->
+      <div class="absolute inset-0 m-auto w-fit h-fit flex flex-col items-center justify-center z-20">
+        <button 
+          id="play2" 
+          aria-label="Putar video trailer" 
+          class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none cursor-pointer"
+        >
+          <span class="absolute inset-0 rounded-full bg-[#0E9FBA] opacity-75 animate-ping pointer-events-none"></span>
+          <span class="absolute -inset-2 rounded-full bg-white/20 backdrop-blur-md pointer-events-none"></span>
+          
+          <span class="relative w-full h-full rounded-full bg-white/90 hover:bg-[#0E9FBA] text-[#123B52] hover:text-white flex items-center justify-center pl-1 shadow-[0_10px_35px_rgba(0,0,0,0.4)] transition-colors duration-300">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </span>
+        </button>
+
+        <span class="mt-3.5 text-xs sm:text-sm font-bold tracking-[0.2em] text-white uppercase drop-shadow-md">
+          Watch Cinematic Film
+        </span>
+      </div>
+
+      <div class="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div class="bg-black/45 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 max-w-md text-white shadow-xl">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-[#0E9FBA]">Official Travel Trailer</p>
+          <h3 class="text-base sm:text-lg font-bold text-white mt-0.5">"This Is the Bali They Never Show You..."</h3>
+          <p class="text-xs text-white/80 mt-1 leading-relaxed hidden sm:block">
+            Eksplorasi sinematik air terjun Sekumpul, hutan kabut Munduk, hingga pesisir lumba-lumba Lovina.
+          </p>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2">
+          <div class="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2 text-white text-[11px] font-semibold flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 12"/></svg>
+            Sekumpul Falls
+          </div>
+          <div class="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2 text-white text-[11px] font-semibold flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+            Wanagiri Ridge
+          </div>
+          <div class="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2 text-white text-[11px] font-semibold flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 17c2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+            Lovina Sunrise
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FAQ SECTION ================= -->
+  <section id="faq" class="max-w-[1360px] mx-auto px-5 lg:px-8 sa mt-24 sm:mt-32">
+    <div class="text-center rv mb-12 sm:mb-16">
+      <p class="text-xs tracking-[0.25em] text-brand font-bold uppercase">
+        PERTANYAAN YANG SERING DIAJUKAN
+      </p>
+      <h2 class="text-3xl sm:text-5xl font-black text-navy mt-3 tracking-tight uppercase">
+        Semua Yang Perlu Anda Ketahui
+      </h2>
+      <p class="text-mut text-xs sm:text-sm mt-3 max-w-lg mx-auto leading-relaxed">
+        Temukan jawaban seputar pemesanan paket, rute perjalanan tersembunyi, hingga prosedur keselamatan petualangan bersama Soulvana.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 items-start rv">
+      
+      <!-- Kolom Kiri -->
+      <div class="space-y-4">
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Bagaimana Cara Memesan Tur?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Anda dapat langsung mengisi formulir pencarian tanggal di bagian atas halaman atau menekan tombol WhatsApp kami untuk konsultasi rute dan ketersediaan jadwal secara gratis bersama pemandu lokal.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apakah Anda Menyediakan Layanan Antar-Jemput Hotel?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Ya, semua paket privat kami sudah mencakup layanan penjemputan dan pengantaran langsung ke hotel atau villa Anda di area Ubud, Canggu, Seminyak, Sanur, Kuta, maupun kawasan Lovina dan Munduk.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apakah Trekking Air Terjun Cocok Untuk Pemula?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Sangat cocok. Setiap ekspedisi dipandu langkah demi langkah dengan ritme santai. Kami juga menyediakan beberapa pilihan jalur alternatif yang lebih landai bagi Anda yang membawa keluarga atau anak-anak.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apa Yang Harus Saya Bawa Untuk Kegiatan Tersebut?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Disarankan membawa pakaian ganti, sandal atau sepatu anti-selip (*water shoes*), jaket hangat (khusus sunrise Wanagiri dataran tinggi), handuk kecil, tabir surya, dan kantong anti-air untuk gadget Anda.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apakah Tur Anda Aman?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Keamanan adalah prioritas utama. Seluruh perjalanan didampingi pemandu lokal bersertifikat yang memahami medan alam secara presisi, dilengkapi perlengkapan P3K, dan terproteksi asuransi perjalanan.
+          </p>
+        </details>
+      </div>
+
+      <!-- Kolom Kanan -->
+      <div class="space-y-4">
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Bisakah Saya Menyesuaikan (Custom) Tur Saya?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Tentu saja! Kami mengkhususkan diri pada *custom private tour*. Anda bebas menggabungkan destinasi air terjun, pura bersejarah, maupun pesisir pantai sesuai keinginan dan waktu luang Anda.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apa Saja Yang Termasuk Dalam Paket Wisata?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Setiap paket mencakup mobil privat ber-AC dengan bahan bakar, pemandu lokal asli, tiket masuk destinasi wisata, air mineral, peralatan keamanan standar, dan donasi kelestarian lingkungan desa.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Jam Berapa Biasanya Tur Dimulai?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Untuk rute *Sunrise Wanagiri* atau *Dolphin Watching*, penjemputan dilakukan dini hari sekitar pukul 03.30–04.30 WITA. Sementara untuk tur air terjun dan budaya dimulai antara pukul 07.30–08.30 WITA.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Apa Yang Terjadi Jika Cuaca Buruk?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Jika kondisi cuaca alam dinilai tidak aman oleh pemandu lokal kami, Anda berhak memilih penjadwalan ulang tanggal (*reschedule*) tanpa biaya tambahan atau opsi pengalihan rute alternatif yang lebih aman.
+          </p>
+        </details>
+
+        <details class="group border-b border-gray-200/90 pb-4 transition-all duration-300">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-2 text-left">
+            <span class="font-bold text-sm sm:text-base text-navy group-hover:text-brand transition-colors">
+              Bagaimana Saya Bisa Menghubungi Tim Anda?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-gray-100 text-gray-500 group-hover:bg-brand group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 text-lg font-light group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-mut leading-relaxed pt-2 pr-6">
+            Tim dukungan kami siap melayani Anda 24/7 melalui tautan WhatsApp resmi kami, panggilan telepon langsung, atau lewat formulir pemesanan di bagian bawah halaman.
+          </p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PRE-FOOTER CTA SECTION ================= -->
+  <section class="relative bg-gradient-to-b from-[#f2f8fb] via-[#e5f1f7] to-white pt-20 sm:pt-28 pb-10 sm:pb-16 overflow-hidden mt-24 sm:mt-32">
+    <div class="max-w-[1360px] mx-auto px-5 lg:px-12 relative z-10">
+      <div class="cta-card group relative overflow-hidden rounded-[32px] sm:rounded-[44px] bg-[#0b2838] shadow-[0_40px_90px_rgba(11,40,56,.35)] rv">
+
+        <!-- Background photo + overlays -->
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80" alt="" class="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-[2500ms] ease-out" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0b2838] via-[#0b2838]/85 to-[#0b2838]/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0b2838]/70 via-transparent to-transparent"></div>
+        <div class="absolute -top-32 -left-24 w-[420px] h-[420px] rounded-full bg-brand/30 blur-3xl pointer-events-none"></div>
+
+        <!-- Giant outline word -->
+        <span aria-hidden="true" class="pointer-events-none select-none absolute -bottom-10 sm:-bottom-16 right-4 sm:right-10 text-[140px] sm:text-[260px] lg:text-[320px] font-extrabold leading-none tracking-tighter text-transparent" style="-webkit-text-stroke:1.5px rgba(255,255,255,.12)">BALI</span>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center p-7 sm:p-12 lg:p-16">
+
+          <!-- Left -->
+          <div class="lg:col-span-7 text-white">
+            <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/25 px-4 py-2 rounded-full text-[11px] font-bold tracking-[.18em]">
+              <span class="relative flex w-2.5 h-2.5"><span class="absolute inline-flex h-full w-full rounded-full bg-brand opacity-75 animate-ping"></span><span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-brand"></span></span>
+              START YOUR UNFORGETTABLE JOURNEY
+            </div>
+
+            <h2 class="mt-6 text-[38px] sm:text-6xl lg:text-[72px] font-light leading-[1.03] tracking-tight">
+              Ready to explore Bali
+              <span class="block mt-1 font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[#8fe3f5] to-brand">beyond the ordinary?</span>
+            </h2>
+
+            <p class="mt-6 text-sm sm:text-base text-white/80 leading-relaxed max-w-xl">
+              Baik itu trekking menembus air terjun tersembunyi, menikmati sunrise di puncak Wanagiri, maupun menyusun liburan privat sesuai ritme Anda — tim lokal kami siap merancangkannya untuk Anda.
+            </p>
+
+            <div class="mt-7 flex flex-wrap gap-2.5">
+              <span class="inline-flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white"><span class="w-5 h-5 rounded-full bg-brand grid place-items-center"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Free Itinerary Planning</span>
+              <span class="inline-flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white"><span class="w-5 h-5 rounded-full bg-brand grid place-items-center"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Verified Local Guide</span>
+              <span class="inline-flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white"><span class="w-5 h-5 rounded-full bg-brand grid place-items-center"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>No Hidden Fees</span>
+            </div>
+          </div>
+
+          <!-- Right: glass action panel -->
+          <div class="lg:col-span-5">
+            <div class="rounded-[28px] bg-white/10 backdrop-blur-2xl border border-white/25 p-4 sm:p-5 shadow-2xl space-y-3">
+
+              <a href="https://wa.me/" target="_blank" rel="noopener" class="group/a relative flex items-center justify-between gap-4 bg-white text-[#123B52] p-4 sm:p-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div class="flex items-center gap-4 min-w-0">
+                  <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#25D366] text-white grid place-items-center shrink-0">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#25D366] ring-2 ring-white animate-pulse"></span>
+                  </div>
+                  <div class="min-w-0">
+                    <span class="block text-sm sm:text-base font-bold">Konsultasi Rute Gratis</span>
+                    <span class="block text-[11px] sm:text-xs text-[#717885] mt-0.5">Tanya langsung via WhatsApp (Fast Response)</span>
+                  </div>
+                </div>
+                <span class="w-10 h-10 rounded-full bg-[#123B52] text-white grid place-items-center shrink-0 group-hover/a:rotate-45 transition-transform duration-300">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+
+              <a href="#booking" class="group/b flex items-center justify-between gap-4 bg-white/10 hover:bg-white/20 border border-white/25 text-white p-4 sm:p-5 rounded-2xl hover:-translate-y-1 transition-all duration-300">
+                <div class="flex items-center gap-4 min-w-0">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand/90 text-white grid place-items-center shrink-0">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </div>
+                  <div class="min-w-0">
+                    <span class="block text-sm sm:text-base font-bold">Rencanakan Tanggal Perjalanan</span>
+                    <span class="block text-[11px] sm:text-xs text-white/70 mt-0.5">Pilih paket &amp; tanggal di formulir booking</span>
+                  </div>
+                </div>
+                <span class="w-10 h-10 rounded-full border border-white/40 grid place-items-center shrink-0 group-hover/b:bg-white group-hover/b:text-[#123B52] transition">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+
+              <div class="flex items-center gap-3 pt-2 px-1">
+                <div class="flex -space-x-2.5">
+                  <img class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="">
+                  <img class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="">
+                  <img class="w-8 h-8 rounded-full border-2 border-white/90 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="">
+                </div>
+                <p class="text-xs text-white/80"><span class="font-bold text-white">200k+</span> happy travelers sudah bersama kami</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full h-8 sm:h-12 mt-12 bg-gradient-to-b from-transparent to-white"></div>
+  </section>
+
+  <!-- ================= MOMENTS GALLERY (before footer) ================= -->
+  <section id="moments" class="relative bg-white pt-6 sm:pt-10 pb-6 sm:pb-10 overflow-hidden">
+    <div class="max-w-[1360px] mx-auto px-5 lg:px-12 text-center rv">
+      <p class="inline-flex items-center gap-2 text-xs tracking-[.3em] text-brand font-semibold"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg> FOLLOW THE JOURNEY</p>
+      <h2 class="mt-3 text-4xl sm:text-6xl font-light tracking-tight text-[#123B52]">#Soulvana<span class="font-serif italic font-bold text-brand">Moments</span></h2>
+      <p class="mt-3 text-sm sm:text-base text-mut max-w-md mx-auto">Potret nyata dari perjalanan para traveler kami — dari puncak berkabut sampai pantai tersembunyi.</p>
+      <a href="#" target="_blank" rel="noopener" class="group/f mt-6 inline-flex items-center gap-3 bg-[#123B52] hover:bg-[#0b2838] text-white text-sm font-semibold pl-6 pr-2 py-2 rounded-full shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+        Follow us
+        <span class="w-8 h-8 rounded-full bg-white text-[#123B52] grid place-items-center group-hover/f:bg-brand group-hover/f:text-white group-hover/f:rotate-45 transition-all duration-300"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+
+    <div class="mt-10 space-y-2">
+      <div class="mq py-5"><div class="mq-track" id="mqA"></div></div>
+      <div class="mq py-5"><div class="mq-track rev" id="mqB"></div></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer" class="relative bg-[#072a40] text-white overflow-hidden pt-52 sm:pt-64 lg:pt-80 pb-10 sm:pb-14">
+  
+  <div class="absolute inset-x-0 top-0 h-[450px] sm:h-[560px] lg:h-[650px] pointer-events-none select-none z-0">
+    <svg class="w-full h-full object-cover object-top" viewBox="0 0 1600 650" fill="none" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="45%" stop-color="#ffffff"/>
+          <stop offset="70%" stop-color="#e2edf0"/>
+          <stop offset="100%" stop-color="#a4bcc4"/>
+        </linearGradient>
+        <linearGradient id="forestDark" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0b2f47" stop-opacity="0.8"/>
+          <stop offset="45%" stop-color="#082a3f"/>
+          <stop offset="100%" stop-color="#06243a"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="1600" height="650" fill="url(#skyGrad)"/>
+      <path d="M0 380 L180 320 L350 340 L520 280 L720 230 L800 170 L910 240 L1080 300 L1260 260 L1440 330 L1600 310 L1600 650 L0 650 Z" fill="#759aa5" opacity="0.65"/>
+      <path d="M0 360 L120 330 L260 300 L440 360 L620 310 L780 260 L890 310 L1050 330 L1200 280 L1380 320 L1520 290 L1600 320 L1600 650 L0 650 Z" fill="#4a7f9c" opacity="0.75"/>
+      <path d="M0 400 L140 360 L320 390 L480 340 L650 370 L800 320 L960 360 L1150 340 L1320 370 L1480 340 L1600 380 L1600 650 L0 650 Z" fill="#2b6384" opacity="0.9"/>
+
+      <g stroke="#1f4f6a" stroke-width="2" fill="none" opacity="0.75" stroke-linecap="round">
+        <path d="M880 200 Q886 193 892 200 Q898 193 904 200"/>
+        <path d="M915 190 Q920 185 925 190 Q930 185 935 190"/>
+        <path d="M895 215 Q899 210 903 215 Q907 210 911 215"/>
+        <path d="M930 205 Q933 201 936 205 Q939 201 942 205"/>
+        <path d="M870 210 Q873 207 876 210 Q879 207 882 210"/>
+      </g>
+
+      <g transform="translate(710, 155)">
+        <path d="M22 130 L45 340 M118 130 L95 340" stroke="#0c3049" stroke-width="4.5"/>
+        <path d="M26 150 L114 200 M114 150 L26 200 M32 200 L108 260 M108 200 L32 260 M38 260 L102 330 M102 260 L38 330" stroke="#0c3049" stroke-width="2.5" opacity="0.85"/>
+        <line x1="26" y1="150" x2="114" y2="150" stroke="#0c3049" stroke-width="3"/>
+        <line x1="32" y1="200" x2="108" y2="200" stroke="#0c3049" stroke-width="3"/>
+        <line x1="38" y1="260" x2="102" y2="260" stroke="#0c3049" stroke-width="3"/>
+        <line x1="44" y1="330" x2="96" y2="330" stroke="#0c3049" stroke-width="3"/>
+        <rect x="10" y="112" width="120" height="18" fill="#0f3753" rx="2"/>
+        <line x1="12" y1="104" x2="128" y2="104" stroke="#0c3049" stroke-width="2.5"/>
+        <line x1="14" y1="104" x2="14" y2="112" stroke="#0c3049" stroke-width="2"/>
+        <line x1="126" y1="104" x2="126" y2="112" stroke="#0c3049" stroke-width="2"/>
+        <rect x="22" y="50" width="96" height="64" fill="#15425f"/>
+        <rect x="28" y="56" width="16" height="32" fill="#3a7898"/>
+        <rect x="48" y="56" width="16" height="32" fill="#3a7898"/>
+        <rect x="68" y="56" width="16" height="32" fill="#3a7898"/>
+        <rect x="88" y="56" width="16" height="32" fill="#3a7898"/>
+        <path d="M12 50 L70 18 L128 50 Z" fill="#0f3753"/>
+        <rect x="66" y="6" width="8" height="14" fill="#0c3049"/>
+        <path d="M125 125 Q180 180 250 210 Q320 230 400 245" stroke="#0f3753" stroke-width="1.8" fill="none" opacity="0.85"/>
+      </g>
+
+      <g fill="#17475f" opacity="0.85">
+        <path d="M-20 440 L20 330 L60 440 L90 320 L130 440 L180 340 L230 440 L280 310 L330 440 L380 350 L430 440 L490 330 L540 440 L600 320 L650 440 L700 340 L760 440 L820 310 L880 440 L930 330 L990 440 L1050 300 L1110 440 L1170 340 L1230 440 L1300 310 L1370 440 L1440 330 L1510 440 L1580 310 L1640 440 L1640 650 L-20 650 Z"/>
+      </g>
+
+      <g fill="#0f3753">
+        <path d="M-10 490 L30 370 L70 490 L120 350 L170 490 L220 370 L270 490 L330 340 L390 490 L440 360 L500 490 L560 350 L620 490 L670 370 L730 490 L800 360 L860 490 L920 350 L980 490 L1040 330 L1100 490 L1160 360 L1220 490 L1280 340 L1340 490 L1410 360 L1480 490 L1550 330 L1620 490 L1620 650 L-10 650 Z"/>
+      </g>
+
+      <g fill="#082840">
+        <path d="M-20 540 L15 390 L50 540 L85 410 L120 540 L160 380 L200 540 L250 400 L300 540 L360 370 L410 540 L470 400 L530 540 L590 380 L650 540 L710 390 L780 540 L850 380 L920 540 L970 390 L1030 540 L1090 370 L1150 540 L1210 390 L1280 540 L1350 370 L1420 540 L1490 390 L1560 540 L1630 360 L1660 540 L1660 650 L-20 650 Z"/>
+      </g>
+
+      <rect y="440" width="1600" height="210" fill="url(#forestDark)"/>
+    </svg>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 h-[75%] bg-gradient-to-t from-[#072a40] via-[#072a40]/90 to-transparent pointer-events-none z-[1]"></div>
+
+  <div class="relative z-10 max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-12 gap-10 lg:gap-8 items-start pb-14">
+
+      <div class="lg:col-span-3 space-y-4">
+        <div class="space-y-2">
+          <h4 class="whitespace-nowrap text-sm xl:text-base font-bold tracking-wider text-white drop-shadow uppercase">Explore North Bali</h4>
+          <div class="w-24 sm:w-28 h-[2px] bg-brand/80"></div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/90 pt-1 font-medium">
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Sekumpul Waterfall Trek</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Lovina Dolphin Sunrise</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Munduk Highlands Trek</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Expedition 2026 (Waterfalls)</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Expedition 2027 (Highlands)</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Expedition 2028 (Coastline)</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 space-y-4">
+        <div class="space-y-2">
+          <h4 class="whitespace-nowrap text-sm xl:text-base font-bold tracking-wider text-white drop-shadow uppercase">Destinations</h4>
+          <div class="w-24 sm:w-28 h-[2px] bg-brand/80"></div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/90 pt-1 font-medium">
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Munduk Highlands</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Sekumpul Valley</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Lovina Coastline</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Gitgit Waterfalls</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Wanagiri Ridge</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Lake Buyan &amp; Tamblingan</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 space-y-4">
+        <div class="space-y-2">
+          <h4 class="whitespace-nowrap text-sm xl:text-base font-bold tracking-wider text-white drop-shadow uppercase">Soulvana</h4>
+          <div class="w-24 sm:w-28 h-[2px] bg-brand/80"></div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/90 pt-1 font-medium">
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Our Story &amp; Ethos</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Safety Guidelines</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Responsible Travel</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Travel Journal</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">FAQ &amp; Support</a></li>
+          <li><a href="#" class="hover:text-brand hover:translate-x-1 inline-block transition-transform duration-200">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="sm:col-span-3 lg:col-span-3 text-left lg:text-right space-y-2.5">
+        <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow uppercase">Soulvana</h3>
+        <p class="text-[11px] sm:text-xs font-bold tracking-[0.3em] text-brand uppercase">Adventure &bull; Retreat</p>
+        <p class="text-sm sm:text-base italic text-amber-400">Different ways to experience Bali. One Soulvana.</p>
+        <p class="text-sm sm:text-base text-white/90 leading-relaxed">Local North Bali travel experiences connecting travelers with nature, ocean, waterfalls, mist-covered mountains, and authentic culture.</p>
+        <div class="flex items-center justify-start lg:justify-end gap-4 pt-3">
+        <a href="#" class="w-12 h-12 sm:w-13 sm:h-13 rounded-full border-2 border-white/80 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:scale-110 shadow-lg transition-all duration-300" aria-label="Instagram">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+  </a>
+  <a href="#" class="w-12 h-12 sm:w-13 sm:h-13 rounded-full border-2 border-white/80 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:scale-110 shadow-lg transition-all duration-300" aria-label="TikTok">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2h-3.4v13.2a2.8 2.8 0 1 1-2-2.7V9.5a6.2 6.2 0 1 0 5.4 6.2V9.1a8.2 8.2 0 0 0 4.8 1.5V7.2a4.8 4.8 0 0 1-1-.5z"/></svg>
+  </a>
+  <a href="#" class="w-12 h-12 sm:w-13 sm:h-13 rounded-full border-2 border-white/80 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:scale-110 shadow-lg transition-all duration-300" aria-label="YouTube">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/25 pt-8 mt-2"></div>
+
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-6 text-xs sm:text-sm text-white/80">
+      <p class="text-center lg:text-left text-white/70">&copy; 2026 SOULVANA. Strictly North Bali / Bali Utara. All rights reserved.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-white/80 font-medium">
+        <a href="#" class="hover:text-white transition">Safety Protocols</a>
+        <a href="#" class="hover:text-white transition">Eco Travel Pledge</a>
+        <a href="#" class="hover:text-white transition">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= VIDEO MODAL INTERAKTIF (DENGAN FALLBACK) ================= -->
+<div id="modal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg flex items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Video Modal">
+  
+  <button id="close" class="absolute top-5 right-5 sm:top-8 sm:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center text-2xl transition-all duration-300 z-50 cursor-pointer" aria-label="Tutup">
+    ✕
+  </button>
+
+  <div class="relative w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-black flex flex-col">
+    <div class="relative w-full aspect-video">
+      <iframe 
+        id="modalFrame" 
+        class="w-full h-full" 
+        src="" 
+        title="Soulvana Bali Adventure Video" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Bar Fallback / Opsi Buka di YouTube Jika Embed Dibatasi -->
+    <div class="bg-zinc-900/90 border-t border-white/10 px-5 py-3 flex flex-wrap items-center justify-between gap-3 text-xs text-white/80">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Jika video tidak dapat diputar karena izin hak cipta YouTube, Anda dapat membukanya langsung:
+      </span>
+      <a 
+        href="https://youtu.be/ZzF35jnKMxw" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-1.5 rounded-full transition-colors shrink-0">
+        Buka di YouTube ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FLOATING WHATSAPP WIDGET ================= -->
+<div id="waWidget" class="fixed bottom-6 right-5 sm:right-8 z-50 flex flex-col items-end">
+  
+  <!-- Quick Chat Pop-up Card -->
+  <div 
+    id="waCard" 
+    class="hidden w-[310px] sm:w-[350px] bg-white rounded-3xl shadow-[0_18px_50px_rgba(0,0,0,0.25)] border border-gray-100 overflow-hidden mb-3 transition-all duration-300 transform origin-bottom-right scale-95 opacity-0">
+    
+    <!-- Header Kartu -->
+    <div class="bg-[#123B52] p-4 text-white flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white font-bold text-sm shadow">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.4 7.6 11.9a.7.7 0 0 0 .8 0C13 21.4 20 15.4 20 10a8 8 0 0 0-8-8z"/>
+              <path d="m10 9 4-2-1 4-2-1z"/>
+            </svg>
+          </div>
+          <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#123B52]"></span>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm leading-tight">Soulvana Tour Support</h4>
+          <p class="text-[11px] text-white/75 mt-0.5 flex items-center gap-1.5 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Online • Balas Cepat
+          </p>
+        </div>
+      </div>
+      <button id="waClose" aria-label="Tutup chat" class="text-white/70 hover:text-white p-1 rounded-full hover:bg-white/10 transition cursor-pointer">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Bubble Chat (Tampilan Gaya WhatsApp) -->
+    <div class="p-4 bg-[#e5ddd5]/25 space-y-3">
+      <div class="bg-white rounded-2xl rounded-tl-xs p-3.5 shadow-sm border border-gray-100 max-w-[92%]">
+        <p class="text-xs text-gray-800 leading-relaxed font-normal">
+          Halo! Mau tanya rute privat atau <em>custom trip</em> ke Bali Utara? Tim lokal kami siap membantu merancang liburan terbaik untuk Anda. 🌴
+        </p>
+        <span class="block text-right text-[10px] text-gray-400 mt-1.5">Baru saja</span>
+      </div>
+    </div>
+
+    <!-- Tombol Aksi Menuju WhatsApp -->
+    <div class="p-3.5 bg-white border-t border-gray-100">
+      <!-- GANTI nomor 6281234567890 dengan nomor WhatsApp asli Anda -->
+      <a 
+        id="waLink"
+        href="https://wa.me/6289699696624?text=Halo%20Soulvana%2C%20saya%20ingin%20tanya%20rute%20privat%20atau%20custom%20trip%20ke%20Bali%20Utara." 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs sm:text-sm py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-emerald-500/25">
+        <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        Mulai Chat Sekarang
+      </a>
+    </div>
+  </div>
+
+  <!-- Tombol Utama Mengambang (Floating Action Button) -->
+  <button 
+    id="waToggle"
+    type="button" 
+    aria-label="Buka Chat WhatsApp" 
+    class="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-[0_12px_35px_rgba(37,211,102,0.45)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+    
+    <!-- Animasi Denyut Lingkaran Luar (Ping Ring) -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-75 animate-ping pointer-events-none"></span>
+
+    <!-- Ikon WhatsApp -->
+    <svg class="relative w-7 h-7 sm:w-8 sm:h-8 fill-current transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+
+    <!-- Badge Notifikasi Merah Angka 1 -->
+    <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-500 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white shadow">
+      1
+    </span>
+  </button>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+const EXP = [
+ {n:'Sekumpul Majestic Waterfalls',p:'450.000',d:'Trek through jungle paths and rivers to one of Bali\u2019s most dramatic waterfall landscapes.',s:'Deep Trek',c:'Waterfall',l:'Sekumpul, North Bali',g:'fall'},
+ {n:'Dolphin Watching',p:'350.000',s:'Sunrise at sea',c:'Ocean',l:'Lovina, North Bali',g:'sea'},
+ {n:'Munduk Highlands',p:'400.000',s:'Rainforest Trek',c:'Trekking',l:'Munduk',g:'trek'},
+ {n:'Mount & Sunrise',p:'500.000',s:'Summit experience',c:'Mountain',l:'Wanagiri',g:'mtn'},
+ {n:'North Bali Discovery',p:'600.000',s:'Exploration',c:'Wildlife',l:'Buleleng, North Bali',g:'wild'},
+ {n:'Hidden Bali',p:'350.000',s:'Culture + Nature',c:'Culture',l:'Hidden Villages',g:'cult'},
+ {n:'Jungle River Walk',p:'300.000',s:'Half-day trek',c:'Trekking',l:'Sekumpul',g:'trek'},
+ {n:'Coastline Snorkel',p:'250.000',s:'Ocean escape',c:'Ocean',l:'Lovina, North Bali',g:'sea'},
+ {n:'Twin Lakes Overlook',p:'200.000',s:'Mountain views',c:'Mountain',l:'Munduk',g:'mtn'}
+];
+const CATS = ['Popular','Trekking','Waterfall','Ocean','Mountain','Wildlife','Culture'];
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+let cat = 'Popular', dest = '', shown = 6;
+const pin = '<svg width="11" height="11" viewBox="0 0 24 24" fill="#0E9FBA"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>';
+
+const pinW = '<svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>';
+
+function popular() {
+  const span = ['col-span-2 row-span-2', '', '', 'col-span-2'];
+  $('#popGrid').innerHTML = EXP.slice(0, 4).map((e, i) => {
+    const big = i === 0;
+    return `
+    <div class="rv h-full ${span[i]}">
+      <a href="#explore" class="pcard group relative block h-full rounded-[22px] sm:rounded-[28px] overflow-hidden bg-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500">
+        <div class="ph ${e.g}" data-w="${big ? 1000 : 700}"></div>
+        <div class="pcard-shade absolute inset-0"></div>
+
+        <span class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 bg-black/25 backdrop-blur-sm border border-white/25 text-white text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 rounded-full">0${i + 1}</span>
+        <span class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/95 text-ink text-[9px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm">${e.c}</span>
+
+        <div class="absolute inset-x-0 bottom-0 z-10 p-3.5 sm:p-5 lg:p-6 text-white">
+          <p class="flex items-center gap-1.5 text-[10px] sm:text-xs text-white/85">${pinW}<span class="truncate">${e.l}</span></p>
+          <h3 class="${big ? 'text-2xl sm:text-4xl' : 'text-sm sm:text-xl'} font-bold leading-tight mt-1 ${big ? '' : 'line-clamp-2'}">${e.n}</h3>
+          ${big ? `<p class="hidden sm:block mt-2 max-w-sm text-sm leading-relaxed text-white/80">${e.d}</p>` : ''}
+          <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-white/20">
+            <div class="leading-tight min-w-0">
+              <span class="block text-[9px] sm:text-[11px] text-white/70">Start from</span>
+              <span class="block text-xs sm:text-base font-extrabold whitespace-nowrap">Rp ${e.p}</span>
+            </div>
+            <span class="parrow shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-ink grid place-items-center shadow-md">
+              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>`;
+  }).join('');
+}
+
+function chips() {
+  $('#chips').innerHTML = CATS.map(c => `
+    <button role="tab" class="chip shrink-0 border rounded-full px-5 py-2 text-xs font-semibold text-mut ${c === cat ? 'on' : ''}" data-c="${c}">
+      ${c === 'Popular' ? 'Popular experiences' : c}
+    </button>
+  `).join('');
+}
+
+function grid() {
+  setTimeout(paint, 0);
+  const list = EXP.filter(e => (cat === 'Popular' || e.c === cat) && (!dest || e.l.includes(dest)));
+  
+  $('#empty').classList.toggle('hidden', list.length > 0);
+  $('#more').parentElement.style.display = list.length > shown ? 'block' : 'none';
+  
+  $('#grid').innerHTML = list.slice(0, shown).map((e, i) => `
+    <div class="card card-anim card-hover block group" style="animation-delay: ${i * 60}ms">
+      <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+        <div class="ph ${e.g} aspect-[4/3] relative">
+          <span class="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 bg-white/95 backdrop-blur-md text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-sm text-ink">
+            ${e.c}
+          </span>
+        </div>
+      </div>
+      <div class="mt-2 sm:mt-3">
+        <h3 class="text-xs sm:text-sm font-bold text-ink leading-snug line-clamp-1 group-hover:text-brand transition-colors">
+          ${e.n}
+        </h3>
+        <div class="flex items-center justify-between gap-1 mt-1">
+          <p class="flex items-center gap-1 min-w-0 text-[10px] sm:text-xs text-mut truncate">
+            ${pin}<span class="truncate">${e.l}</span>
+          </p>
+          <span class="text-[9px] sm:text-xs text-brand font-semibold whitespace-nowrap shrink-0">
+            ${e.s}
+          </span>
+        </div>
+        <div class="flex items-center justify-between gap-2 mt-2.5 pt-2.5 border-t border-black/5">
+          <div class="leading-tight min-w-0">
+            <span class="block text-[9px] sm:text-[10px] text-mut">Start from</span>
+            <span class="block text-[11px] sm:text-sm font-extrabold text-ink whitespace-nowrap">Rp ${e.p}</span>
+          </div>
+          <a href="#footer" class="shrink-0 bg-brand text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:opacity-90 active:scale-95 transition">
+            See detail
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  if (typeof paint === 'function') paint();
+}
+
+const journeyData = {
+  trek: {
+    img: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=900&q=85',
+    alt: 'Rainforest treks'
+  },
+  mtn: {
+    img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=900&q=85',
+    alt: 'Sunrise summits'
+  },
+  fall: {
+    img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=900&q=85',
+    alt: 'Hidden waterfalls'
+  }
+};
+
+const jImg = document.getElementById('journeyImg');
+const jBtns = document.querySelectorAll('.j-btn');
+
+jBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.journey;
+    if (!journeyData[type] || !jImg) return;
+
+    jBtns.forEach(b => {
+      b.classList.remove('border-brand', 'text-brand', 'ring-2', 'ring-brand/20', 'scale-105');
+      b.classList.add('border-transparent', 'text-ink');
+    });
+
+    btn.classList.remove('border-transparent', 'text-ink');
+    btn.classList.add('border-brand', 'text-brand', 'ring-2', 'ring-brand/20', 'scale-105');
+
+    jImg.style.opacity = '0';
+    jImg.style.transform = 'scale(1.06)';
+
+    setTimeout(() => {
+      jImg.src = journeyData[type].img;
+      jImg.alt = journeyData[type].alt;
+      jImg.style.opacity = '1';
+      jImg.style.transform = 'scale(1)';
+    }, 200);
+  });
+});
+
+const G = (id, a, b, c) => `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/>${c ? `<stop offset="1" stop-color="${c}"/>` : ''}</linearGradient>`;
+const cloud = (x, y, k = 1) => `<g fill="#fff" opacity=".85" transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="0" rx="42" ry="11"/><ellipse cx="22" cy="-8" rx="26" ry="11"/><ellipse cx="-20" cy="-6" rx="20" ry="9"/></g>`;
+const tree = (x, y, h, c) => `<path d="M${x} ${y}l-${h*.28} 0 ${h*.28}-${h} ${h*.28} ${h}z" fill="${c}"/>`;
+const palm = (x, y, h) => `<path d="M${x} ${y}q6-${h/2} 0-${h}" stroke="#5b3d22" stroke-width="5" fill="none"/><g stroke="#1d7a46" stroke-width="6" fill="none" stroke-linecap="round"><path d="M${x} ${y-h}q-30-5-45 20M${x} ${y-h}q30-5 45 20M${x} ${y-h}q-20-25-45-15M${x} ${y-h}q20-25 45-15M${x} ${y-h}q0-25 5-30"/></g>`;
+
+const SC = {
+  sea: `<defs>${G('a','#59c3ee','#d8f3fb')}${G('b','#2bb0d6','#0b6f94')}</defs><rect width="400" height="500" fill="url(#a)"/><circle cx="300" cy="150" r="34" fill="#fff6c8"/>${cloud(90,90)}${cloud(260,60,.7)}<path d="M0 260q60-20 120 0t120 0 160 0v240H0z" fill="url(#b)"/><path d="M0 330q50-14 100 0t100 0 100 0 100 0" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none"/><path d="M0 400q50-14 100 0t100 0 100 0 100 0" stroke="#fff" stroke-opacity=".3" stroke-width="3" fill="none"/><path d="M120 300q25-40 50-8-20-4-28 18z" fill="#2c4a5c"/><path d="M0 470c60-25 120-10 180-5s140 5 220-25v60H0z" fill="#e9d6a5" opacity=".9"/>${palm(60,470,150)}`,
+  fall: `<defs>${G('a','#bfe6d4','#6fb98f')}${G('w','#fff','#dff3f4')}</defs><rect width="400" height="500" fill="url(#a)"/><path d="M0 220l70-70 80 50 90-80 160 110v290H0z" fill="#3f8a5e"/><path d="M60 140h100v260H60z" fill="#2d6e4a"/><g fill="url(#w)"><rect x="82" y="150" width="10" height="230" rx="5"/><rect x="104" y="150" width="14" height="240" rx="7"/><rect x="132" y="150" width="9" height="220" rx="4"/></g><path d="M0 390q100-30 200-10t200-10v130H0z" fill="#3aa5a8"/><ellipse cx="115" cy="395" rx="60" ry="10" fill="#fff" opacity=".6"/>${tree(250,330,150,'#1f5e3d')}${tree(300,350,190,'#174c31')}${tree(350,340,150,'#1f5e3d')}${tree(30,330,120,'#1f5e3d')}<path d="M0 450q150-40 400-10v60H0z" fill="#17402b"/>`,
+  mtn: `<defs>${G('a','#f7b36a','#fde6bb')}</defs><rect width="400" height="500" fill="url(#a)"/><circle cx="200" cy="230" r="46" fill="#fff3c9"/><path d="M0 330l90-70 70 50 70-100 40 40 130-60v310H0z" fill="#8aa4a0" opacity=".6"/><path d="M0 360l120-110 50 50 90-130 140 190v140H0z" fill="#4a7a60"/><path d="M260 170l-40 60 40-20 40 20z" fill="#e9f0e8" opacity=".8"/><path d="M0 430q100-50 200-20t200-30v120H0z" fill="#27573f"/>${cloud(80,110)}${cloud(310,80,.8)}`,
+  trek: `<defs>${G('a','#cdeed8','#8fcca8')}</defs><rect width="400" height="500" fill="url(#a)"/><path d="M0 250q100-60 200-20t200-30v300H0z" fill="#4fa076"/>${[40,110,180,250,330].map((x,i)=>tree(x,380,200-i%3*35,i%2?'#1c5c3a':'#14472d')).join('')}<path d="M170 500q30-90 40-150t20-80" stroke="#d8c69a" stroke-width="34" fill="none" stroke-linecap="round"/><path d="M0 470q150-30 400-5v40H0z" fill="#0f3523"/>`,
+  wild: `<defs>${G('a','#f2cf8e','#fbeacb')}</defs><rect width="400" height="500" fill="url(#a)"/><circle cx="120" cy="190" r="40" fill="#fff0c0"/><path d="M0 300q100-70 200-20t200-40v260H0z" fill="#c68a4f"/><path d="M0 380q150-60 400-10v140H0z" fill="#7f8f47"/><g stroke="#3b2b1f" stroke-width="3" fill="none"><path d="M250 120q10-10 20 0q10-10 20 0M310 160q8-8 16 0q8-8 16 0"/></g><path d="M290 300v-30h-12M290 270q-10-30 8-30v18" stroke="#3b2b1f" stroke-width="5" fill="none"/>${tree(70,420,130,'#4c5b2d')}${tree(340,430,110,'#4c5b2d')}`,
+  cult: `<defs>${G('a','#f6a77a','#fde0b8')}</defs><rect width="400" height="500" fill="url(#a)"/><circle cx="200" cy="200" r="50" fill="#ffe9bd"/><g fill="#4a2a2f"><path d="M70 480V260l30-28 12 28v220z"/><path d="M330 480V260l-30-28-12 28v220z"/><path d="M80 240l20-50 10 50zM320 240l-20-50-10 50z"/></g><path d="M0 440q200-50 400 0v60H0z" fill="#2c1a22"/>${palm(30,460,170)}${palm(370,460,150)}`
+};
+
+const boat = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><path d="M-44 14q40 7 88 0" stroke="#fff" stroke-opacity=".55" stroke-width="3" fill="none"/><path d="M-30 0h60l-9 11h-42z" fill="#fff"/><rect x="-17" y="-9" width="32" height="9" fill="#f4fbff"/><rect x="-20" y="-13" width="38" height="5" fill="#2aa5c9"/></g>`;
+const cliff = `<path d="M0 30l90-14 80 36 80 30 70 52 60 40 50 22H0z" fill="#2c7a49"/><path d="M0 130l60-20 70 40 70 45 70 40 50 20H0z" fill="#b7bfae" opacity=".85"/><g fill="#1d6a3a"><circle cx="40" cy="40" r="34"/><circle cx="110" cy="48" r="30"/><circle cx="180" cy="80" r="28"/><circle cx="240" cy="112" r="24"/><circle cx="300" cy="150" r="20"/></g><path d="M0 262q90-18 190-10t170-6l60 12-70 22H0z" fill="#ecdcae"/>`;
+const BAY = `<defs><linearGradient id="k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc3ee"/><stop offset="1" stop-color="#dcf0fa"/></linearGradient><linearGradient id="m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fd0cc"/><stop offset=".5" stop-color="#16a6c4"/><stop offset="1" stop-color="#0a6f93"/></linearGradient></defs><rect width="1200" height="500" fill="url(#k)"/>${cloud(330,80,1.7)}${cloud(800,55,1.3)}${cloud(1010,110,1)}<path d="M330 215l110-45 120 25 110-40 130 45 110-25 70 40v40H330z" fill="#6aa5a3" opacity=".7"/><rect y="228" width="1200" height="272" fill="url(#m)"/><path d="M420 330q80-10 160 0t160 0" stroke="#fff" stroke-opacity=".25" stroke-width="2" fill="none"/><path d="M520 380q90-12 180 0t180 0" stroke="#fff" stroke-opacity=".2" stroke-width="2" fill="none"/>${cliff}<g transform="translate(1200 -10) scale(-1 1.06)">${cliff}</g>${boat(860,330,1.3)}${boat(990,430,1.7)}${boat(260,385,1)}${boat(700,300,.7)}${boat(450,435,1.2)}`;
+
+const uri = k => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">${SC[k]}</svg>`)}")`;
+
+const PHOTO = {
+  sea:  '1507525428034-b723cf961d3e',
+  fall: '1512100356356-de1b84283e18',
+  mtn:  '1518548419970-58e3b4079ab2',
+  trek: '1544644181-1484b3fdfc62',
+  cult: '1537996194471-e657df975ab4',
+  wild: '1537953773345-d172ccf13cf1'
+};
+const photoUrl = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+function setPhoto(el, id, w) {
+  const apply = u => {
+    el.style.backgroundImage = `url("${u}")`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+  };
+  const probe = new Image();
+  probe.onload = () => apply(probe.src);
+  probe.onerror = () => { if (id !== PHOTO.cult) setPhoto(el, PHOTO.cult, w); };
+  probe.src = photoUrl(id, w);
+}
+
+function paint() {
+  const by = $('.bayimg');
+  if (by) setPhoto(by, PHOTO.sea, 2000);
+  $$('.ph').forEach(el => {
+    const k = Object.keys(PHOTO).find(c => el.classList.contains(c));
+    if (k) setPhoto(el, PHOTO[k], +el.dataset.w || 700);
+  });
+}
+
+popular();
+chips();
+grid();
+paint();
+
+$('#chips').addEventListener('click', e => {
+  const b = e.target.closest('[data-c]');
+  if (!b) return;
+  cat = b.dataset.c;
+  shown = 6;
+  chips();
+  grid();
+});
+
+$('#more').onclick = () => { shown += 4; grid(); };
+
+$$('.stamp').forEach(b => b.onclick = () => {
+  dest = b.dataset.d;
+  cat = 'Popular';
+  shown = 6;
+  chips();
+  grid();
+  $('#explore').scrollIntoView({ behavior: 'smooth' });
+});
+
+$('#search').onsubmit = e => {
+  e.preventDefault();
+  dest = $('#sdest').value;
+  const st = $('#sstyle').value;
+  cat = CATS.includes(st) ? st : 'Popular';
+  shown = 6;
+  chips();
+  grid();
+  $('#explore').scrollIntoView({ behavior: 'smooth' });
+};
+
+const closeNav = () => {
+  $('#mnav').classList.add('hidden');
+  $('#burger').setAttribute('aria-expanded', 'false');
+};
+$('#burger').onclick = e => {
+  const m = $('#mnav'); 
+  m.classList.toggle('hidden'); 
+  e.currentTarget.setAttribute('aria-expanded', !m.classList.contains('hidden')); 
+};
+addEventListener('resize', () => { 
+  if (innerWidth >= 1024) closeNav(); 
+});
+$$('#mnav a').forEach(a => a.onclick = closeNav);
+
+/* ================= TOURS DROPDOWN (mobile accordion + desktop menu) ================= */
+(function () {
+  const PKG = [
+    { id: 'pkg-1', per: 'Periode 1', tag: 'Jungle Trek',       t: 'Where the Jungle Meets the Falls', dur: '1 Day · 2 Day',     p: '850.000', img: '1512100356356-de1b84283e18' },
+    { id: 'pkg-2', closed: true, per: 'Periode 2', tag: 'Sunrise Highlands', t: 'Sunrise Above the Clouds',         dur: 'Half Day · 1 Day',  p: '650.000', img: '1518548419970-58e3b4079ab2' },
+    { id: 'pkg-3', closed: true, per: 'Periode 3', tag: 'North Coast',       t: 'The Sea Comes Alive',              dur: 'Half Day · 1 Day',  p: '550.000', img: '1507525428034-b723cf961d3e' }
+  ];
+  const ic = d => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const STYLES = [
+    { c: 'Trekking',  bg: '#E6F6EC', fg: '#15803d', i: ic('<path d="M5 4h5v6l4.5 2c2.6 1.1 4.5 1.8 4.5 4.2V19H5z"/><path d="M5 7.5h5M5 10.5h4M5 16h14"/>') },
+    { c: 'Waterfall', bg: '#E0F5FA', fg: '#0E9FBA', i: ic('<path d="M4 5h16M8 5v9M12 5v11M16 5v9"/><path d="M3 19.5c1.7-1.6 3.3-1.6 5 0s3.3 1.6 5 0 3.3-1.6 5 0 2.5 1 3 .5"/>') },
+    { c: 'Ocean',     bg: '#E3EEFC', fg: '#2563eb', i: ic('<path d="M2 7.5c1.7-1.6 3.3-1.6 5 0s3.3 1.6 5 0 3.3-1.6 5 0 3.3 1.6 5 0"/><path d="M2 12.5c1.7-1.6 3.3-1.6 5 0s3.3 1.6 5 0 3.3-1.6 5 0 3.3 1.6 5 0"/><path d="M2 17.5c1.7-1.6 3.3-1.6 5 0s3.3 1.6 5 0 3.3-1.6 5 0 3.3 1.6 5 0"/>') },
+    { c: 'Mountain',  bg: '#EEEAF8', fg: '#6d4fc2', i: ic('<path d="m3 19 6.5-12 4 7 2.5-4L21 19z"/><path d="m8 10 1.5-3 1.6 2.5"/>') },
+    { c: 'Wildlife',  bg: '#FDF1DC', fg: '#c2780a', i: ic('<circle cx="6" cy="10.5" r="1.7"/><circle cx="10" cy="6.5" r="1.7"/><circle cx="14" cy="6.5" r="1.7"/><circle cx="18" cy="10.5" r="1.7"/><path d="M12 11.5c-3 0-5.5 3-5.5 5.4 0 1.6 1.3 2.4 2.7 2.4 1 0 1.8-.5 2.8-.5s1.8.5 2.8.5c1.4 0 2.7-.8 2.7-2.4 0-2.4-2.5-5.4-5.5-5.4z"/>') },
+    { c: 'Culture',   bg: '#FCE8EC', fg: '#d6336c', i: ic('<path d="M12 3 9 6h6zM12 6 7.5 10h9zM12 10l-6 4.5h12zM7.5 14.5V20m9-5.5V20M5 20h14"/>') }
+  ];
+  const arrow = '<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>';
+  const chev  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  const img = k => `https://images.unsplash.com/photo-${k.img}?auto=format&fit=crop&w=140&h=140&q=65`;
+
+  const styleGrid = (k0) => `<div class="tgrid">${STYLES.map((s, i) =>
+    `<a href="#explore" data-c="${s.c}" class="tstyle tanim" style="--k:${k0 + i}"><span class="temo" style="background:${s.bg};color:${s.fg}">${s.i}</span>${s.c}</a>`).join('')}</div>`;
+
+  // ---------- Mobile ----------
+  $('#toursList').innerHTML = `
+    <p class="tlabel tanim" style="--k:0">Main tours</p>
+    ${PKG.map((k, i) => `
+      <div class="tanim" style="--k:${i + 1}">
+        <button type="button" class="trow" aria-expanded="false"><span>${k.per}${k.closed ? '<em class="tclosed">Closed</em>' : ''}</span>${chev}</button>
+        <div class="msub"><div>
+          <div class="tdetail">
+            <img loading="lazy" decoding="async" alt="" src="${img(k)}">
+            <div class="min-w-0">
+              <span class="pk-tag" style="display:block">${k.tag}</span>
+              <p class="td-t">${k.t}</p>
+              <p class="td-m">${k.dur}</p>
+              <p class="td-p">Start from Rp ${k.p}</p>
+              <a href="#${k.id}" class="tgo">See detail<i>${arrow}</i></a>
+            </div>
+          </div>
+        </div></div>
+      </div>`).join('')}
+    <a href="#packages" class="tall tanim" style="--k:4">See all packages →</a>
+    <p class="tlabel tanim" style="--k:5">Travel style</p>
+    ${styleGrid(6)}`;
+
+  // ---------- Desktop ----------
+  $('#toursDrop').innerHTML = `
+    <p class="tlabel">Main tours</p>
+    ${PKG.map(k => `
+      <a href="#${k.id}" role="menuitem" class="pk">
+        <img loading="lazy" decoding="async" alt="" src="${img(k)}">
+        <span class="pk-body">
+          <span class="pk-tag">${k.tag}</span>
+          <span class="pk-t">${k.per}${k.closed ? '<em class="tclosed">Closed</em>' : ''}</span>
+          <span class="pk-p">${k.t}</span>
+          <span class="pk-p">Start from Rp ${k.p}</span>
+        </span>
+      </a>`).join('')}
+    <p class="tlabel">Travel style</p>
+    <div class="tgrid">${STYLES.map(s => `<a href="#explore" role="menuitem" data-c="${s.c}" class="tstyle"><span class="temo" style="background:${s.bg};color:${s.fg}">${s.i}</span>${s.c}</a>`).join('')}</div>`;
+
+  // ---------- Mobile accordion ----------
+  const btn = $('#toursBtn'), panel = $('#toursPanel');
+  const resetSub = () => $$('#toursList .trow').forEach(r => { r.setAttribute('aria-expanded', 'false'); r.nextElementSibling.classList.remove('open'); });
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open);
+    panel.classList.toggle('open', open);
+    if (!open) resetSub();
+  });
+  $('#toursList').addEventListener('click', e => {
+    const row = e.target.closest('.trow');
+    if (!row) return;
+    const open = row.getAttribute('aria-expanded') !== 'true';
+    resetSub();
+    row.setAttribute('aria-expanded', open);
+    row.nextElementSibling.classList.toggle('open', open);
+  });
+  $('#burger').addEventListener('click', () => {
+    btn.setAttribute('aria-expanded', 'false'); panel.classList.remove('open'); resetSub();
+  });
+
+  // ---------- Klik link (paket / style / semua) ----------
+  const goStyle = c => {
+    dest = ''; cat = c; shown = 6; chips(); grid();
+    $('#explore').scrollIntoView({ behavior: 'smooth' });
+  };
+  [$('#toursList'), $('#toursDrop')].forEach(box => box.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    if (a.dataset.c) { e.preventDefault(); goStyle(a.dataset.c); }
+    closeNav(); hideNow();
+  }));
+
+  // Tutup menu saat klik di luar / tekan Esc
+  document.addEventListener('click', e => {
+    if (!$('#mnav').classList.contains('hidden') && !e.target.closest('#mnav, #burger')) closeNav();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeNav(); hideDrop(); } });
+
+  // ---------- Desktop dropdown ----------
+  const link = $('#toursLink'), drop = $('#toursDrop'), navEl = $('#navLinks');
+  let t;
+  const place = () => { drop.style.left = (link.offsetLeft + link.offsetWidth / 2) + 'px'; };
+  function showDrop() { clearTimeout(t); place(); drop.classList.add('show'); navEl.classList.add('tours-open'); }
+  function hideNow() { drop.classList.remove('show'); navEl.classList.remove('tours-open'); }
+  function hideDrop() { clearTimeout(t); t = setTimeout(hideNow, 160); }
+  [link, drop].forEach(el => { el.addEventListener('mouseenter', showDrop); el.addEventListener('mouseleave', hideDrop); });
+  link.addEventListener('focus', showDrop);
+  drop.addEventListener('focusout', e => { if (!drop.contains(e.relatedTarget) && e.relatedTarget !== link) hideDrop(); });
+})();
+
+/* ================= HERO SLIDER (ringan: 2 layer, preload 1 gambar berikutnya) ================= */
+(function () {
+  const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop`;
+  const HERO = [
+    { id: '1537996194471-e657df975ab4', title: 'Ulun Danu Lake Temple', meta: '1 Day · Lake Bratan' },
+    { id: '1518548419970-58e3b4079ab2', title: 'Wanagiri Sunrise Hill', meta: 'Sunrise · Buleleng' },
+    { id: '1512100356356-de1b84283e18', title: 'Sekumpul Waterfalls', meta: 'Deep Trek · North Bali' },
+    { id: '1507525428034-b723cf961d3e', title: 'Nusa Penida Coast', meta: '2 Days · Klungkung' }
+  ];
+  const full  = h => `${U(h.id)}&w=1600&q=72`;
+  const thumb = h => `${U(h.id)}&w=160&h=160&q=65`;
+  const section = $('#home'), bg = [$('#bgA'), $('#bgB')], thumbs = $('#heroThumbs');
+  const pad = n => String(n).padStart(2, '0');
+  let front = 0, cur = 0;
+
+  thumbs.innerHTML = HERO.map((h, i) => `
+    <button type="button" data-i="${i}" aria-label="${h.title}" class="hthumb w-14 h-14 sm:w-[76px] sm:h-[76px] rounded-2xl ${i === 0 ? 'on' : ''}">
+      <img loading="lazy" decoding="async" src="${thumb(h)}" alt="" class="w-full h-full object-cover rounded-2xl">
+      <span class="hring"></span>
+      <span class="hprog"><i></i></span>
+    </button>`).join('');
+  const btns = $$('.hthumb', thumbs);
+
+  function show(i) {
+    cur = (i + HERO.length) % HERO.length;
+    const h = HERO[cur], next = bg[1 - front], old = bg[front];
+    const swap = () => { next.classList.add('is-on'); old.classList.remove('is-on'); front = 1 - front; };
+    next.onload = swap;
+    next.src = full(h);
+    if (next.complete && next.naturalWidth) swap();
+
+    $('#featTitle').textContent = h.title;
+    $('#featMeta').textContent = h.meta;
+    $('#heroCount').textContent = pad(cur + 1);
+    $('#heroTotal').textContent = '/' + pad(HERO.length);
+    btns.forEach((b, k) => b.classList.toggle('on', k === cur));
+
+    new Image().src = full(HERO[(cur + 1) % HERO.length]);   // preload hanya 1 gambar berikutnya
+  }
+
+  // Pergantian slide mengikuti akhir animasi progress (otomatis ikut pause)
+  thumbs.addEventListener('animationend', e => { if (e.target.closest('i')) show(cur + 1); });
+  thumbs.addEventListener('click', e => {
+    const b = e.target.closest('[data-i]');
+    if (!b) return;
+    const i = +b.dataset.i;
+    if (i === cur) return;
+    show(i);
+  });
+
+  // Pause saat hero tidak terlihat / tab disembunyikan
+  let visible = true;
+  const sync = () => section.classList.toggle('hero-paused', !visible || document.hidden);
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; sync(); }, { threshold: .1 }).observe(section);
+  document.addEventListener('visibilitychange', sync);
+
+  new Image().src = full(HERO[1]);
+  $('#featTitle').textContent = HERO[0].title;
+  $('#featMeta').textContent = HERO[0].meta;
+})();
+
+/* ================= FAQ: animasi buka/tutup halus ================= */
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const EASE = 'cubic-bezier(.22,1,.36,1)';
+
+  $$('#faq details').forEach(d => {
+    const sum = d.querySelector('summary');
+    const body = d.querySelector('summary ~ *');
+    let anim = null, bodyAnim = null, closing = false;
+
+    const collapsedH = () => {            // tinggi saat tertutup (diukur tanpa repaint)
+      const was = d.open; d.open = false;
+      const h = d.offsetHeight; d.open = was;
+      return h;
+    };
+
+    function run(from, to, opening) {
+      d.style.overflow = 'hidden';
+      anim = d.animate({ height: [from + 'px', to + 'px'] }, { duration: opening ? 480 : 360, easing: EASE });
+      if (body) {
+        bodyAnim = body.animate(
+          opening ? [{ opacity: 0, transform: 'translateY(-8px)' }, { opacity: 1, transform: 'none' }]
+                  : [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-6px)' }],
+          { duration: opening ? 420 : 220, delay: opening ? 70 : 0, easing: EASE, fill: 'both' }
+        );
+      }
+      anim.onfinish = anim.oncancel = () => {
+        anim = null;
+        d.open = opening;
+        d.classList.remove('is-closing');
+        d.style.overflow = '';
+        closing = false;
+        if (bodyAnim) { bodyAnim.cancel(); bodyAnim = null; }
+      };
+    }
+
+    sum.addEventListener('click', e => {
+      e.preventDefault();
+      const from = d.offsetHeight;                 // tinggi saat ini (juga saat animasi berjalan)
+      if (anim) { anim.oncancel = anim.onfinish = null; anim.cancel(); anim = null; if (bodyAnim) bodyAnim.cancel(); }
+
+      const opening = !d.open || closing;
+      if (opening) {
+        closing = false; d.classList.remove('is-closing');
+        d.open = true;
+        run(from, d.offsetHeight, true);     // tinggi penuh saat terbuka
+      } else {
+        closing = true; d.classList.add('is-closing');
+        run(from, collapsedH(), false);
+      }
+    });
+  });
+})();
+
+/* ================= MOMENTS GALLERY MARQUEE ================= */
+(function () {
+  const U = (id, w, h, c) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&crop=${c}&q=80`;
+  const A = '1537996194471-e657df975ab4', B = '1518548419970-58e3b4079ab2', C = '1512100356356-de1b84283e18', D = '1507525428034-b723cf961d3e';
+  // [photo, caption, width, height, rotation] — ganti dengan foto trip asli
+  const rowA = [
+    [A, 'Lake Bratan', 230, 300, -2], [B, 'Wanagiri', 300, 230, 2], [C, 'Sekumpul', 230, 300, -1.5],
+    [D, 'Nusa Penida', 300, 230, 2.5], [B, 'Sunrise Hill', 230, 300, -2], [A, 'Ulun Danu', 300, 230, 1.5]
+  ];
+  const rowB = [
+    [D, 'Nusa Penida', 300, 230, 2], [C, 'Sekumpul', 230, 300, -2], [A, 'Lake Bratan', 300, 230, 1.5],
+    [B, 'Wanagiri', 230, 300, -2.5], [C, 'Jungle Trek', 300, 230, 2], [D, 'Hidden Bay', 230, 300, -1.5]
+  ];
+  const crops = ['entropy', 'edges'];
+  const ig = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>';
+  const tile = ([id, cap, w, h, r], i) => `<a href="#" class="mq-tile group relative shrink-0 overflow-hidden rounded-[28px] shadow-lg" style="width:${w}px;height:${h}px;--r:${r}deg" aria-label="${cap}"><img src="${U(id, w * 2, h * 2, crops[i % 2])}" alt="${cap}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div><div class="absolute bottom-4 left-4 right-4 flex items-center gap-2 text-white text-xs font-semibold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">${ig}${cap}</div></a>`;
+  const fill = (el, rows) => {
+    const half = `<div class="mq-half">${rows.map(tile).join('')}</div>`;
+    el.innerHTML = half + half;
+  };
+  const a = document.getElementById('mqA'), b = document.getElementById('mqB');
+  if (a) fill(a, rowA);
+  if (b) fill(b, rowB);
+})();
+
+/* ================= MODAL VIDEO (YOUTUBE EMBED LINK BARU) ================= */
+const modal = document.getElementById('modal'); 
+const modalFrame = document.getElementById('modalFrame'); 
+
+const videoUrl = 'https://www.youtube.com/embed/ZzF35jnKMxw?autoplay=1&enablejsapi=1&rel=0';
+
+function openVideo() {
+  if (modal && modalFrame) {
+    modalFrame.src = videoUrl;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeVideo() {
+  if (modal && modalFrame) {
+    modal.classList.add('hidden');
+    modalFrame.src = '';
+    document.body.style.overflow = '';
+  }
+}
+
+/* Cinematic card: video langsung diputar di tempat (tanpa popup) */
+const videoCard = document.getElementById('videoCard');
+const play2 = document.getElementById('play2');
+if (play2 && videoCard) {
+  play2.addEventListener('click', () => {
+    videoCard.classList.remove('group');
+    videoCard.innerHTML = '<iframe class="absolute inset-0 w-full h-full" src="' + videoUrl + '" title="Soulvana Bali Adventure Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  });
+}
+
+document.querySelectorAll('#play3').forEach(btn => {
+  if (btn) btn.addEventListener('click', openVideo);
+});
+
+const closeBtn = document.getElementById('close'); 
+if (closeBtn) closeBtn.addEventListener('click', closeVideo);
+
+if (modal) {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeVideo();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeVideo();
+});
+
+const io = new IntersectionObserver(es => es.forEach(x => {
+  if (x.isIntersecting) {
+    x.target.classList.add('in');
+    io.unobserve(x.target);
+  }
+}), { threshold: 0.12 });
+
+function observe() {
+  $$('.rv:not(.in)').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 80 + 'ms';
+    io.observe(el);
+  });
+}
+observe();
+
+const nav = document.getElementById('nav');
+const navLinks = [...document.querySelectorAll('#navLinks .nlink')];
+const navInd = document.getElementById('navInd');
+const navProg = document.getElementById('navProg');
+let activeLink = navLinks[0], hoverLink = null;
+
+function paintInd() {
+  const t = hoverLink || activeLink;
+  if (!t || !navInd) return;
+  navInd.style.width = t.offsetWidth + 'px';
+  navInd.style.transform = `translateX(${t.offsetLeft}px)`;
+  navLinks.forEach(a => a.classList.toggle('ind-on', a === t));
+}
+navLinks.forEach(a => {
+  a.addEventListener('mouseenter', () => { hoverLink = a; paintInd(); });
+  a.addEventListener('mouseleave', () => { hoverLink = null; paintInd(); });
+  a.addEventListener('click', () => { activeLink = a; paintInd(); });
+});
+
+const onS = () => {
+  const wasSc = nav.classList.contains('sc');
+  nav.classList.toggle('sc', window.scrollY > 40);
+  if (wasSc !== nav.classList.contains('sc')) setTimeout(paintInd, 650);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if (navProg) navProg.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+  // capsule width changes on scroll -> re-measure after transition
+  requestAnimationFrame(paintInd);
+};
+window.addEventListener('scroll', onS, { passive: true });
+window.addEventListener('resize', paintInd);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintInd);
+window.addEventListener('load', paintInd);
+onS();
+paintInd();
+
+/* ================= FLOATING WHATSAPP TOGGLE ================= */
+const waToggle = document.getElementById('waToggle');
+const waCard = document.getElementById('waCard');
+const waClose = document.getElementById('waClose');
+
+function toggleWaCard() {
+  if (!waCard) return;
+  const isHidden = waCard.classList.contains('hidden');
+  if (isHidden) {
+    waCard.classList.remove('hidden');
+    setTimeout(() => {
+      waCard.classList.remove('scale-95', 'opacity-0');
+      waCard.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  } else {
+    waCard.classList.remove('scale-100', 'opacity-100');
+    waCard.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => waCard.classList.add('hidden'), 250);
+  }
+}
+
+if (waToggle) waToggle.addEventListener('click', toggleWaCard);
+if (waClose) waClose.addEventListener('click', toggleWaCard);
+
+// Menutup bubble chat otomatis jika user mengklik area lain di luar widget
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('waWidget');
+  if (widget && !widget.contains(e.target) && !waCard.classList.contains('hidden')) {
+    toggleWaCard();
+  }
+});
+</script>
+</body>
+</html>
